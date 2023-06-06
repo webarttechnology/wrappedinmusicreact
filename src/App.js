@@ -1,9 +1,9 @@
-import Base from "./components/Base";
+import AppRouter from "./Router/AppRouter";
 import "react-multi-carousel/lib/styles.css";
 function App() {
   return (
     <>
-      <Base />
+      <AppRouter />
     </>
   );
 }

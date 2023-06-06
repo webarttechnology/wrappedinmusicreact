@@ -1,6 +1,7 @@
 import React from "react";
 import Sidebar from "./Sidebar";
 import Container from "./Container";
+import Footer from "./Footer";
 
 const Base = () => {
   return (
@@ -9,6 +10,7 @@ const Base = () => {
         <Sidebar />
         <Container />
       </div>
+      <Footer />
     </>
   );
 };

@@ -1,6 +1,11 @@
 import React from "react";
 import Header from "./Header";
 import SongCarousal from "./SongCarousal";
+import Genres from "./Genres";
+import Bestsellers from "./Bestsellers";
+import HowItWorks from "./HowItWorks";
+import Testimonials from "./Testimonials";
+import Faq from "./Faq";
 
 const Container = () => {
   return (
@@ -23,7 +28,13 @@ const Container = () => {
             </div>
           </div>
         </div>
-        <SongCarousal />
+        <SongCarousal ftitle="Trending Songs" />
+        <Genres />
+        <Bestsellers />
+        <HowItWorks />
+        <SongCarousal title="Custom Messages For Any Occasion" />
+        <Testimonials />
+        <Faq />
       </div>
     </>
   );

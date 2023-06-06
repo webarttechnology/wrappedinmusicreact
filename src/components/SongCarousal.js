@@ -1,7 +1,7 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
 
-const SongCarousal = () => {
+const SongCarousal = ({ title, ftitle }) => {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -22,7 +22,9 @@ const SongCarousal = () => {
   return (
     <>
       <div class="ms_heading">
-        <h1>Trending Songs</h1>
+        <h1>
+          {title} {ftitle}
+        </h1>
         <span class="veiw_all">
           <a href="#">view more</a>
         </span>
