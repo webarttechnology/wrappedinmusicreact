@@ -7333,7 +7333,6 @@ ul.accordion p {
     url("../banner2.jpg") no-repeat center;
   background-size: cover;
   padding: 100px 0px 70px;
-  margin-top: 90px;
 }
 
 .page-header h1 {
@@ -7752,4 +7751,13 @@ ul.accordion p {
 }
 .react-multiple-carousel__arrow--right {
   right: calc(1% + 1px) !important;
+}
+.ms_cont_left_marg {
+  margin-left: 240px;
+}
+.ms_headerPost {
+  left: 200px;
+}
+.footer_padd {
+  padding: 0px 80px 2px 240px;
 }

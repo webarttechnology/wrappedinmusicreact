@@ -1,10 +1,13 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, sidebarOpen }) => {
   return (
     <>
-      <div class="ms_sidemenu_wrapper">
-        <div class="ms_nav_close">
+      <div
+        class={isOpen ? "ms_sidemenu_wrapper open_menu" : "ms_sidemenu_wrapper"}
+      >
+        <div class="ms_nav_close" onClick={sidebarOpen}>
           <i class="fa fa-angle-right" aria-hidden="true"></i>
         </div>
         <div class="ms_sidemenu_inner">
@@ -23,20 +26,20 @@ const Sidebar = () => {
           <div class="ms_nav_wrapper">
             <ul>
               <li>
-                <a href="index.html" class="active" title="Discover">
+                <NavLink to="/" class="active" title="Discover">
                   <span class="nav_icon">
                     <span class="icon icon_discover"></span>
                   </span>
                   <span class="nav_text">Home</span>
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a href="songs.html" title="About Us">
+                <NavLink to="/songs" title="About Us">
                   <span class="nav_icon">
                     <i class="bi bi-music-note"></i>
                   </span>
                   <span class="nav_text">Songs</span>
-                </a>
+                </NavLink>
               </li>
               <li>
                 <a href="how-it-works.html" title="Wrap In Music">

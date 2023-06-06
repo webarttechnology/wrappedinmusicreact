@@ -1,6 +1,6 @@
 import React from "react";
 
-const Footer = () => {
+const Footer = ({ isOpen }) => {
   return (
     <div>
       <div class="ms_footer_wrapper">
@@ -9,7 +9,7 @@ const Footer = () => {
             <img src="assets/images/logo-m.png" alt="" />
           </a>
         </div>
-        <div class="ms_footer_inner">
+        <div class={isOpen ? "ms_footer_inner footer_padd" : "ms_footer_inner"}>
           <div class="row">
             <div class="col-lg-3 col-md-6">
               <div class="footer_box">

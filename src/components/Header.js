@@ -1,9 +1,9 @@
 import React from "react";
 
-const Header = () => {
+const Header = ({ isOpen }) => {
   return (
     <>
-      <div class="ms_header">
+      <div class={isOpen ? "ms_headerPost ms_header" : "ms_header"}>
         <div class="ms_top_left">
           <div class="ms_top_trend">
             <span>
