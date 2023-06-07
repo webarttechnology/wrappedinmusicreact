@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import InnerBanner from "../components/InnerBanner";
+import { Link } from "react-router-dom";
 
 const Song = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <InnerBanner />
@@ -23,7 +27,7 @@ const Song = () => {
           </div>
           <div class="row justify-content-center">
             <div class="col-lg-3 col-md-6 mx-7">
-              <a href="songs-genres.html">
+              <Link to="/category">
                 <div class="ms_rcnt_box marger_bottom30">
                   <div class="ms_rcnt_box_img bxyimg">
                     <img
@@ -83,7 +87,7 @@ const Song = () => {
                     </h3>
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
             <div class="col-lg-3 col-md-6 mx-7">
               <div class="ms_rcnt_box marger_bottom30">

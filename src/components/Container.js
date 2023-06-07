@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SongCarousal from "./SongCarousal";
 import Genres from "./Genres";
 import Bestsellers from "./Bestsellers";
 import HowItWorks from "./HowItWorks";
 import Testimonials from "./Testimonials";
 import Faq from "./Faq";
+import AudioPlayer from "./music/AudioPlayer";
 
 const Container = () => {
   const video = "assets/wrappervideo.mp4";
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div class="ms-banner">
@@ -34,6 +38,8 @@ const Container = () => {
           </div>
         </div>
       </div>
+      {/* <AudioPlayer /> */}
+
       <SongCarousal ftitle="Trending Songs" />
       <Genres />
       <Bestsellers />

@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Base from "../components/Base";
 import Song from "../pages/Song";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Category from "../pages/Category";
+import AudioTrack from "../components/AudioTrack";
 const AppRouter = () => {
   const [isOpen, setIsOpen] = useState(false);
   const sidebarOpen = () => {
@@ -26,10 +28,12 @@ const AppRouter = () => {
             <Routes>
               <Route path="/" element={<Base />} />
               <Route path="/songs" element={<Song />} />
+              <Route path="/category" element={<Category />} />
             </Routes>
           </div>
         </div>
         <Footer isOpen={isOpen} />
+        <AudioTrack />
       </Router>
     </>
   );
