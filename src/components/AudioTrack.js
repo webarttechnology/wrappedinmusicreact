@@ -124,41 +124,34 @@ const AudioTrack = () => {
                 </div>
               </div>
               <div class="jp-type-playlist">
-                <div class="jp-gui jp-interface flex-wrap">
-                  <Controls
-                    {...{
-                      audioRef,
-                      progressBarRef,
-                      duration,
-                      setTimeProgress,
-                      tracks,
-                      trackIndex,
-                      setTrackIndex,
-                      setCurrentTrack,
-                      handleNext,
-                    }}
-                  />
-                  <div class="jp-progress-container flex-item">
-                    <ProgressBar
-                      {...{ progressBarRef, audioRef, timeProgress, duration }}
-                    />
-                  </div>
-                  <div class="jp-volume-controls flex-item">
-                    <div class="widget knob-container">
-                      <div class="knob-wrapper-outer">
-                        <div class="knob-wrapper">
-                          <div class="knob-mask">
-                            <div class="knob d3">
-                              <span></span>
-                            </div>
-                            <div class="handle"></div>
-                            <div class="round">
-                              <img src="assets/images/svg/volume.svg" alt="" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                <div class="jp-gui jp-interface">
+                  <div className="row">
+                    <div className="col-md-4">
+                      <Controls
+                        {...{
+                          audioRef,
+                          progressBarRef,
+                          duration,
+                          setTimeProgress,
+                          tracks,
+                          trackIndex,
+                          setTrackIndex,
+                          setCurrentTrack,
+                          handleNext,
+                        }}
+                      />
                     </div>
+                    <div className="col-md-4">
+                      <ProgressBar
+                        {...{
+                          progressBarRef,
+                          audioRef,
+                          timeProgress,
+                          duration,
+                        }}
+                      />
+                    </div>
+                    <div className="col-md-4"></div>
                   </div>
                 </div>
               </div>

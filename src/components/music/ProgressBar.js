@@ -27,6 +27,7 @@ const ProgressBar = ({ progressBarRef, audioRef, timeProgress, duration }) => {
         <input
           type="range"
           ref={progressBarRef}
+          className="playBar"
           defaultValue="0"
           onChange={handleProgressChange}
         />

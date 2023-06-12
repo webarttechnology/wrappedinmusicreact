@@ -1,14 +1,5 @@
+import CircularSlider from "@fseehawer/react-circular-slider";
 import { useState, useEffect, useRef, useCallback } from "react";
-
-// icons
-import {
-  IoPlayBackSharp,
-  IoPlayForwardSharp,
-  IoPlaySkipBackSharp,
-  IoPlaySkipForwardSharp,
-  IoPlaySharp,
-  IoPauseSharp,
-} from "react-icons/io5";
 
 import { IoMdVolumeHigh, IoMdVolumeOff, IoMdVolumeLow } from "react-icons/io";
 
@@ -26,6 +17,7 @@ const Controls = ({
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(60);
   const [muteVolume, setMuteVolume] = useState(false);
+  const [isDragging, setIsDragging] = useState("");
 
   const togglePlayPause = () => {
     setIsPlaying((prev) => !prev);
@@ -81,15 +73,15 @@ const Controls = ({
   }, [volume, audioRef, muteVolume]);
 
   return (
-    <div className="controls-wrapper">
+    <>
       <div className="controls">
         <div class="align-items-center d-flex flex-item jp-controls">
           <button onClick={handlePrevious} class="jp-previous" tabindex="0">
             <i class="ms_play_control"></i>
           </button>
-          {/* <button onClick={skipBackward}>
-            <IoPlayBackSharp />
-          </button> */}
+          <button onClick={skipBackward}>
+            <img className="skippe" src="assets/images/prev.png" />
+          </button>
           <button onClick={togglePlayPause} class="jp-play" tabindex="0">
             {isPlaying ? (
               <i class="ms_play_control isPaly"></i>
@@ -98,16 +90,19 @@ const Controls = ({
             )}
           </button>
 
-          {/* <button onClick={skipForward}>
-            <IoPlayForwardSharp />
-          </button> */}
+          <button onClick={skipForward}>
+            <img className="skippe" src="assets/images/next.png" />
+          </button>
           <button onClick={handleNext} class="jp-next" tabindex="0">
             <i class="ms_play_control"></i>
           </button>
         </div>
       </div>
       <div className="volume">
-        <button onClick={() => setMuteVolume((prev) => !prev)}>
+        <button
+          className="soundOr"
+          onClick={() => setMuteVolume((prev) => !prev)}
+        >
           {muteVolume || volume < 5 ? (
             <IoMdVolumeOff />
           ) : volume < 40 ? (
@@ -118,6 +113,7 @@ const Controls = ({
         </button>
         <input
           type="range"
+          className="vlum"
           min={0}
           max={100}
           value={volume}
@@ -127,7 +123,7 @@ const Controls = ({
           }}
         />
       </div>
-    </div>
+    </>
   );
 };
 
