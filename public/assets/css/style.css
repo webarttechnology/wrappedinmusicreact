@@ -3352,6 +3352,8 @@ span.ms_frequency {
 }
 .ms_register_form .form-control {
   padding: 3px 30px 0px 20px;
+  background-color: #1e1e1e;
+  color: #fbac23;
 }
 .fa_icon {
   background-image: url(../images/svg/play_icon.svg);
@@ -3383,7 +3385,7 @@ i.fa_icon.form_close {
 }
 .ms_register_form h2 {
   font-size: 24px;
-  color: #fff;
+  color: #be7816;
   text-align: center;
   padding-bottom: 10px;
   margin-bottom: 30px;
@@ -3407,7 +3409,7 @@ i.fa_icon.form_close {
   background: -webkit-radial-gradient(
     50% 50%,
     ellipse closest-side,
-    #fff,
+    #cd8200,
     rgba(255, 42, 112, 0) 60%
   );
   background: -moz-radial-gradient(
@@ -7201,10 +7203,11 @@ ul.accordion p {
 }
 
 .registersec {
-  background: #cd8200;
+  background: #fff;
   padding: 40px 30px;
   width: 80%;
-  margin: 0 auto 50px;
+  margin: 10px auto 50px;
+  border-radius: 10px;
 }
 
 .registersec .ms_register_form {
@@ -7980,7 +7983,29 @@ input[type="range"]:active::-moz-range-thumb {
   opacity: 1;
 }
 .errorMess {
-  color: white !important;
+  color: red !important;
   margin: 0 !important;
   text-align: left !important;
+  font-weight: 400 !important;
+  font-size: 12px;
+}
+.otpInput {
+  margin: 50px 0;
+}
+.otpInput div input {
+  width: 50px !important;
+  height: 50px;
+  font-size: 25px;
+  border-color: #cd8200;
+  border: 2px solid #cd8200;
+}
+.dassh {
+  color: #cd8200;
+  font-size: 25px;
+}
+.resend {
+  color: #d5911c;
+  font-size: 15px;
+  font-weight: 400;
+  cursor: pointer;
 }
