@@ -74,7 +74,7 @@ const Sidebar = ({ isOpen, sidebarOpen }) => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/login" title="Register/Login">
+                <NavLink to="/signup" title="Register/Login">
                   <span class="nav_icon">
                     <i class="bi bi-person-circle"></i>
                   </span>

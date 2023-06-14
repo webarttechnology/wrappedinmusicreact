@@ -10,7 +10,8 @@ import AudioTrack from "../components/AudioTrack";
 import WrapInMusic from "../pages/WrapInMusic";
 import Testimonialss from "../pages/Testimonials";
 import Contact from "../pages/Contact";
-import Login from "../pages/Login";
+import Login from "../pages/SignUp";
+import SignUp from "../pages/SignUp";
 const AppRouter = () => {
   const [isOpen, setIsOpen] = useState(false);
   const sidebarOpen = () => {
@@ -36,7 +37,7 @@ const AppRouter = () => {
               <Route path="/wrapin-music" element={<WrapInMusic />} />
               <Route path="/testimonials" element={<Testimonialss />} />
               <Route path="/contact-us" element={<Contact />} />
-              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<SignUp />} />
             </Routes>
           </div>
         </div>

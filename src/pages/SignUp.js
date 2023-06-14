@@ -8,7 +8,7 @@ const initialValues = {
   password: "",
   confirmPassword: "",
 };
-const Login = () => {
+const SignUp = () => {
   const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
     useFormik({
       initialValues: initialValues,
@@ -34,7 +34,7 @@ const Login = () => {
             />
           </div>
           <div class="ms_register_form">
-            <h2>Register / Sign Up</h2>
+            <h2>Create an account</h2>
             <form onSubmit={handleSubmit}>
               <div class="form-group">
                 <input
@@ -131,4 +131,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
