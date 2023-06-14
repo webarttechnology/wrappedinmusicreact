@@ -13,7 +13,7 @@ const Footer = ({ isOpen }) => {
           <div class="row">
             <div class="col-lg-3 col-md-6">
               <div class="footer_box">
-                <h1 class="footer_title">miraculous music station</h1>
+                <h1 class="footer_title"> music station</h1>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.

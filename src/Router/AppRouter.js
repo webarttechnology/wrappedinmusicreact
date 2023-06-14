@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Base from "../components/Base";
 import Song from "../pages/Song";
@@ -10,6 +10,7 @@ import AudioTrack from "../components/AudioTrack";
 import WrapInMusic from "../pages/WrapInMusic";
 import Testimonialss from "../pages/Testimonials";
 import Contact from "../pages/Contact";
+import Login from "../pages/Login";
 const AppRouter = () => {
   const [isOpen, setIsOpen] = useState(false);
   const sidebarOpen = () => {
@@ -35,6 +36,7 @@ const AppRouter = () => {
               <Route path="/wrapin-music" element={<WrapInMusic />} />
               <Route path="/testimonials" element={<Testimonialss />} />
               <Route path="/contact-us" element={<Contact />} />
+              <Route path="/login" element={<Login />} />
             </Routes>
           </div>
         </div>

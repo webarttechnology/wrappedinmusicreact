@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = ({ isOpen, sidebarOpen }) => {
   return (
@@ -74,12 +74,12 @@ const Sidebar = ({ isOpen, sidebarOpen }) => {
                 </NavLink>
               </li>
               <li>
-                <a href="register.html" title="Register/Login">
+                <NavLink to="/login" title="Register/Login">
                   <span class="nav_icon">
                     <i class="bi bi-person-circle"></i>
                   </span>
-                  <span class="nav_text">Register/Login</span>
-                </a>
+                  <span class="nav_text">Login</span>
+                </NavLink>
               </li>
             </ul>
           </div>

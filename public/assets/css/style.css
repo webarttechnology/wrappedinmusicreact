@@ -2848,6 +2848,18 @@ button.jp-shuffle .ms_play_control:hover {
   color: #dedede;
   margin-bottom: 5px;
 }
+.ms_btn {
+  height: 40px;
+  line-height: 42px;
+  width: auto;
+  margin-left: 0px;
+  padding: 0px 39px;
+  font-size: 16px;
+  margin-right: 20px;
+  position: relative;
+  vertical-align: middle;
+  border: 1px solid #ffff;
+}
 .album_btn a.ms_btn {
   height: 40px;
   line-height: 42px;
@@ -2859,6 +2871,7 @@ button.jp-shuffle .ms_play_control:hover {
   position: relative;
   vertical-align: middle;
 }
+
 span.pause_all {
   opacity: 0;
   position: absolute;
@@ -7965,4 +7978,9 @@ input[type="range"]:active::-moz-range-thumb {
 
 .vlum:hover {
   opacity: 1;
+}
+.errorMess {
+  color: white !important;
+  margin: 0 !important;
+  text-align: left !important;
 }
