@@ -7,6 +7,9 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Category from "../pages/Category";
 import AudioTrack from "../components/AudioTrack";
+import WrapInMusic from "../pages/WrapInMusic";
+import Testimonialss from "../pages/Testimonials";
+import Contact from "../pages/Contact";
 const AppRouter = () => {
   const [isOpen, setIsOpen] = useState(false);
   const sidebarOpen = () => {
@@ -29,6 +32,9 @@ const AppRouter = () => {
               <Route path="/" element={<Base />} />
               <Route path="/songs" element={<Song />} />
               <Route path="/category" element={<Category />} />
+              <Route path="/wrapin-music" element={<WrapInMusic />} />
+              <Route path="/testimonials" element={<Testimonialss />} />
+              <Route path="/contact-us" element={<Contact />} />
             </Routes>
           </div>
         </div>

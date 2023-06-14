@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Sidebar = ({ isOpen, sidebarOpen }) => {
   return (
@@ -50,28 +50,28 @@ const Sidebar = ({ isOpen, sidebarOpen }) => {
                 </a>
               </li>
               <li>
-                <a href="wrap-in-music.html" title="Wrap In Music">
+                <NavLink to="/wrapin-music" title="Wrap In Music">
                   <span class="nav_icon">
                     <i class="bi bi-music-note-list"></i>
                   </span>
                   <span class="nav_text">Wrap In Music</span>
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a href="testimonials.html" title="Songs">
+                <NavLink to="/testimonials" title="Songs">
                   <span class="nav_icon">
                     <i class="bi bi-people"></i>
                   </span>
                   <span class="nav_text">Testimonials</span>
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a href="contact.html" title="Contact Us">
+                <NavLink to="/contact-us" title="Contact Us">
                   <span class="nav_icon">
                     <i class="bi bi-telephone"></i>
                   </span>
                   <span class="nav_text">Contact Us</span>
-                </a>
+                </NavLink>
               </li>
               <li>
                 <a href="register.html" title="Register/Login">

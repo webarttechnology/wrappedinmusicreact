@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Genres from "../components/Genres";
 import SongCarousal from "../components/SongCarousal";
+import InnerBanner from "../components/InnerBanner";
 
 const Category = () => {
   useEffect(() => {
@@ -8,6 +9,7 @@ const Category = () => {
   }, []);
   return (
     <>
+      <InnerBanner />
       <div class="ms_genres_wrapper">
         <div class="row justify-content-center">
           <div class="col-md-7">

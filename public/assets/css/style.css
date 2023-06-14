@@ -2499,13 +2499,12 @@ i.ms_icon.icon_share {
 }
 .jp_queue_wrapper span.que_text {
   background-color: #cd8200;
-  height: 30px;
+  height: 50px;
   display: inline-block;
-  line-height: 33px;
-  padding: 0px 21px;
+  padding: 0px 10px;
   color: #fff;
   text-transform: capitalize;
-  border-radius: 20px;
+  border-radius: 50%;
   cursor: pointer;
   z-index: 1;
   transition: all 0.3s ease-in-out;
@@ -2513,6 +2512,14 @@ i.ms_icon.icon_share {
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -8px;
+}
+.que_text svg {
+  font-size: 30px;
 }
 .jp_queue_wrapper span.que_text i {
   width: 12px;
@@ -7945,12 +7952,17 @@ input[type="range"]:active::-moz-range-thumb {
 }
 .vlum {
   opacity: 0;
+  margin-left: 10px;
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   -ms-transition: all 0.5s;
   -o-transition: all 0.5s;
 }
-.volume:hover .vlum {
+.volume .soundOr:hover ~ .vlum {
+  opacity: 1;
+}
+
+.vlum:hover {
   opacity: 1;
 }
