@@ -3,10 +3,13 @@ import { userSchema } from "../schemas/Validation.js";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import OTPInput from "react-otp-input";
+import * as API from "../api/index";
+
 const initialValues = {
   name: "",
   email: "",
   password: "",
+  phone: "1234567896",
   confirmPassword: "",
 };
 const SignUp = () => {
@@ -24,8 +27,13 @@ const SignUp = () => {
   console.log("otp", otp);
 
   const submitButton = async (values) => {
+    Reflect.deleteProperty(values, "confirmPassword");
     console.log("values", values);
-    setIsEmail(1);
+    const response = await API.user_registration(values);
+    console.log("response", response);
+    if (response.data.success === 1) {
+      setIsEmail(1);
+    }
   };
 
   return (
