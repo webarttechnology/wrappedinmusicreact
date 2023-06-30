@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Sidebar = ({ isOpen, sidebarOpen }) => {
+const Sidebar = ({ isOpen, sidebarOpen, isLogin }) => {
   return (
     <>
       <div
@@ -74,7 +74,10 @@ const Sidebar = ({ isOpen, sidebarOpen }) => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/signup" title="Register/Login">
+                <NavLink
+                  to={isLogin ? "/my-account" : "/signup"}
+                  title="Register/Login"
+                >
                   <span class="nav_icon">
                     <i class="bi bi-person-circle"></i>
                   </span>

@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import OTPInput from "react-otp-input";
 import * as API from "../api/index";
+import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 const initialValues = {
   name: "",
@@ -12,7 +14,8 @@ const initialValues = {
   phone: "1234567896",
   confirmPassword: "",
 };
-const SignUp = () => {
+const SignUp = ({ setIsLogin }) => {
+  const navigate = useNavigate();
   const [isEmail, setIsEmail] = useState(0);
   const [otp, setOtp] = useState("");
   const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
@@ -24,8 +27,7 @@ const SignUp = () => {
       },
     });
 
-  console.log("otp", otp);
-
+  //? USER create
   const submitButton = async (values) => {
     Reflect.deleteProperty(values, "confirmPassword");
     console.log("values", values);
@@ -33,7 +35,74 @@ const SignUp = () => {
     console.log("response", response);
     if (response.data.success === 1) {
       setIsEmail(1);
+      const headerObj = {
+        Authorization: `Bearer ${response.data.token_code}`,
+      };
+      localStorage.setItem("_tokenCode", JSON.stringify(headerObj));
+      toast(response.data.data.msg, {
+        position: "top-right",
+        autoClose: 5000,
+        type: "success",
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      //localStorage.setItem("__userId", response.data.data._id);
     }
+  };
+
+  const verifiOtp = async () => {
+    try {
+      const reqObj = {
+        email: values.email,
+        otp: otp,
+      };
+      console.log("reqObj", reqObj);
+      const response = await API.otp_varification(reqObj);
+      console.log("response", response);
+      if (response.data.success === 1) {
+        setIsLogin(true);
+        navigate("/my-account");
+      } else {
+        toast(response.data.msg, {
+          position: "top-right",
+          autoClose: 5000,
+          type: "error",
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
+    } catch (error) {}
+  };
+
+  const resendOtp = async () => {
+    try {
+      const reqObj = {
+        email: values.email,
+      };
+      const response = await API.resend_otp(reqObj);
+      console.log("response", response);
+      if (response.data.success === 1) {
+        toast(response.data.msg, {
+          position: "top-right",
+          autoClose: 5000,
+          type: "success",
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
+    } catch (error) {}
   };
 
   return (
@@ -131,22 +200,13 @@ const SignUp = () => {
                   <button class="ms_btn">register now</button>
                 </form>
                 <p>
-                  Already Have An Account?{" "}
-                  <a
-                    href="#myModal1"
-                    data-toggle="modal"
-                    class="ms_modal hideCurrentModel"
-                  >
-                    login here
-                  </a>
+                  Already Have An Account? <Link to="/login">login here</Link>
                 </p>
               </>
             ) : (
               <>
                 <h2 className="mb-4">Email verification</h2>
-                <span className="d-block">
-                  Enter the code we just send on your Email
-                </span>
+
                 <div className="otpInput">
                   <OTPInput
                     value={otp}
@@ -156,9 +216,13 @@ const SignUp = () => {
                     renderInput={(props) => <input {...props} />}
                   />
                 </div>
-                <button class="ms_btn">Verify OTP</button>
+                <button class="ms_btn" onClick={verifiOtp}>
+                  Verify OTP
+                </button>
                 <p>
-                  <span class="ms_modal resend">Resend OTP</span>
+                  <span class="ms_modal resend" onClick={resendOtp}>
+                    Resend OTP
+                  </span>
                 </p>
               </>
             )}

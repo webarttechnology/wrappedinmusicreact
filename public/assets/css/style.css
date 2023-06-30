@@ -386,6 +386,8 @@ body.loaded .ms_loader {
   top: 164px;
   right: 0;
   bottom: 70px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .ms_nav_wrapper ul {
   padding: 0px;
@@ -3469,7 +3471,7 @@ i.fa_icon.form-lock {
 }
 .ms_register_form p {
   text-align: center;
-  color: #fff;
+  color: #000;
   font-style: italic;
   margin-top: 20px;
   margin-bottom: 0px;
@@ -3477,7 +3479,7 @@ i.fa_icon.form-lock {
   text-transform: capitalize;
 }
 .ms_register_form p a {
-  color: #fff;
+  color: #000;
   font-weight: 600;
   position: relative;
 }
@@ -3537,7 +3539,7 @@ i.fa_icon.form-lock {
 .ms_register_form .remember_checkbox {
   float: left;
   font-size: 15px;
-  color: #fff;
+  color: #000000;
   font-weight: 400;
   position: relative;
   padding-left: 21px;
@@ -3582,9 +3584,12 @@ i.fa_icon.form-lock {
 .popup_forgot {
   margin-top: 25px;
 }
+.mrt-5 {
+  margin-top: 50px;
+}
 .popup_forgot a {
   font-size: 16px;
-  color: #fff;
+  color: #d89219;
   font-weight: 600;
   letter-spacing: 1px;
   position: relative;
@@ -8006,4 +8011,34 @@ input[type="range"]:active::-moz-range-thumb {
   font-size: 15px;
   font-weight: 400;
   cursor: pointer;
+}
+
+.ms_nav_wrapper::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.ms_nav_wrapper::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #1e1e1e;
+  border-radius: 10px;
+}
+
+.logout {
+  font-size: 21px;
+  border: 1px solid #f30;
+  padding: 8px;
+  color: #f30;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+/* Handle */
+.ms_nav_wrapper::-webkit-scrollbar-thumb {
+  background: #b34e00;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.ms_nav_wrapper::-webkit-scrollbar-thumb:hover {
+  background: #b34e00;
 }

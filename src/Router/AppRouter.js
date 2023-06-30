@@ -10,10 +10,16 @@ import AudioTrack from "../components/AudioTrack";
 import WrapInMusic from "../pages/WrapInMusic";
 import Testimonialss from "../pages/Testimonials";
 import Contact from "../pages/Contact";
-import Login from "../pages/SignUp";
+import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
+import MyAccount from "../pages/MyAccount";
+import ForgotPassword from "../pages/ForgotPassword";
 const AppRouter = () => {
+  const [isLogin, setIsLogin] = useState(
+    JSON.stringify(localStorage.getItem("isLogin"))
+  );
   const [isOpen, setIsOpen] = useState(false);
+  console.log("isLogin", isLogin);
   const sidebarOpen = () => {
     setIsOpen(!isOpen);
   };
@@ -21,7 +27,12 @@ const AppRouter = () => {
     <>
       <Router>
         <div className="ms_main_wrapper">
-          <Sidebar isOpen={isOpen} sidebarOpen={sidebarOpen} />
+          <Sidebar
+            isOpen={isOpen}
+            sidebarOpen={sidebarOpen}
+            setIsLogin={setIsLogin}
+            isLogin={isLogin}
+          />
           <div
             class={
               isOpen
@@ -37,7 +48,22 @@ const AppRouter = () => {
               <Route path="/wrapin-music" element={<WrapInMusic />} />
               <Route path="/testimonials" element={<Testimonialss />} />
               <Route path="/contact-us" element={<Contact />} />
-              <Route path="/signup" element={<SignUp />} />
+              <Route
+                path="/signup"
+                element={<SignUp setIsLogin={setIsLogin} />}
+              />
+              <Route
+                path="/my-account"
+                element={<MyAccount setIsLogin={setIsLogin} />}
+              />
+              <Route
+                path="/login"
+                element={<Login setIsLogin={setIsLogin} />}
+              />
+              <Route
+                path="/forgot-password"
+                element={<ForgotPassword setIsLogin={setIsLogin} />}
+              />
             </Routes>
           </div>
         </div>
