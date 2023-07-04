@@ -60,3 +60,33 @@ export const resend_otp = async (data) => {
     return e.response;
   }
 };
+export const get_subCategory = async (data) => {
+  try {
+    const url = c.CATAGORIES;
+    const res = await axios.get(url);
+    return res;
+  } catch (e) {
+    return e.response;
+  }
+};
+export const getMain_subCategory = async (data) => {
+  try {
+    const url = c.SUBCATAGORIES;
+    const res = await axios.get(url, data);
+    return res;
+  } catch (e) {
+    return e.response;
+  }
+};
+
+export const subCategoryId = async (data) => {
+  console.log("data", data);
+  try {
+    const url = c.SUBCATAGORIES + "/categorywise/" + data;
+    console.log("url", url);
+    const res = await axios.get(url, data);
+    return res;
+  } catch (e) {
+    return e.response;
+  }
+};

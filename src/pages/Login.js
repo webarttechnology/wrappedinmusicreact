@@ -22,6 +22,10 @@ const Login = ({ setIsLogin }) => {
     try {
       const response = await API.user_login(value);
       if (response.data.success === 1) {
+        const headerObj = {
+          Authorization: `Bearer ${response.data.token_code}`,
+        };
+        localStorage.setItem("_tokenCode", JSON.stringify(headerObj));
         localStorage.setItem("isLogin", true);
         setIsLogin(localStorage.getItem("isLogin"));
         localStorage.setItem("__userId", response.data.data.id);
