@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Genres = () => {
   return (
@@ -14,37 +15,39 @@ const Genres = () => {
             </div>
           </div>
           <div class="col-lg-4">
-            <div class="ms_genres_box">
-              <img
-                src="assets/images/genrs/img1.jpg"
-                alt=""
-                class="img-fluid"
-              />
-              <div class="ms_main_overlay">
-                <div class="ms_box_overlay"></div>
-                <div class="ms_play_icon">
-                  <img src="assets/images/svg/play.svg" alt="" />
+            <Link to="/category-details">
+              <div class="ms_genres_box">
+                <img
+                  src="assets/images/genrs/img1.jpg"
+                  alt=""
+                  class="img-fluid"
+                />
+                <div class="ms_main_overlay">
+                  <div class="ms_box_overlay"></div>
+                  <div class="ms_play_icon">
+                    <img src="assets/images/svg/play.svg" alt="" />
+                  </div>
+                  <div class="ovrly_text_div">
+                    <span class="ovrly_text1">
+                      <a href="#">romantic</a>
+                    </span>
+                    <span class="ovrly_text2">
+                      <a href="#">view song</a>
+                    </span>
+                  </div>
                 </div>
-                <div class="ovrly_text_div">
-                  <span class="ovrly_text1">
-                    <a href="#">romantic</a>
-                  </span>
-                  <span class="ovrly_text2">
-                    <a href="#">view song</a>
-                  </span>
+                <div class="ms_box_overlay_on">
+                  <div class="ovrly_text_div">
+                    <span class="ovrly_text1">
+                      <a href="#">romantic</a>
+                    </span>
+                    <span class="ovrly_text2">
+                      <a href="#">view song</a>
+                    </span>
+                  </div>
                 </div>
               </div>
-              <div class="ms_box_overlay_on">
-                <div class="ovrly_text_div">
-                  <span class="ovrly_text1">
-                    <a href="#">romantic</a>
-                  </span>
-                  <span class="ovrly_text2">
-                    <a href="#">view song</a>
-                  </span>
-                </div>
-              </div>
-            </div>
+            </Link>
           </div>
           <div class="col-lg-6">
             <div class="row">

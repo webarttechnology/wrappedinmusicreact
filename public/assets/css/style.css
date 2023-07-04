@@ -2946,7 +2946,7 @@ a.ms_btn.play_btn.btn_pause span.play_all {
 }
 .album_list_wrapper > ul > li {
   display: inline-block;
-  width: 19%;
+  width: 25%;
   color: #cd8200;
   position: relative;
   text-transform: capitalize;
@@ -2961,7 +2961,10 @@ a.ms_btn.play_btn.btn_pause span.play_all {
   position: relative;
 }
 .album_list_wrapper > ul:hover > li > a {
-  color: #1e1e1e;
+  color: #dc9821;
+}
+.album_list_wrapper > ul:hover > li > a i {
+  color: #ffffff;
 }
 ul.album_list_name {
   position: relative;
@@ -7551,7 +7554,7 @@ ul.accordion p {
 }
 
 .album_inner_list {
-  background: #cd8200;
+  background: #2c2c2c;
   padding: 20px;
 }
 
