@@ -8089,6 +8089,10 @@ audio {
   width: 300px !important;
   transition: all 0.2s ease-out;
   background: #ffffff !important;
+  -webkit-border-radius: 12px !important;
+  -moz-border-radius: 12px !important;
+  -ms-border-radius: 12px !important;
+  -o-border-radius: 12px !important;
 }
 .voiceForm {
   margin-top: 20px;
