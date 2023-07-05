@@ -41,7 +41,7 @@ const Container = () => {
       {/* <AudioPlayer /> */}
 
       <SongCarousal ftitle="Trending Songs" />
-      <Genres />
+      {/* <Genres /> */}
       <Bestsellers />
       <HowItWorks />
       <SongCarousal title="Custom Messages For Any Occasion" />

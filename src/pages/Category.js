@@ -11,24 +11,28 @@ const Category = () => {
   const [cataNameSlg, setCataNameSlg] = useState("");
 
   const categoriy_details = async (catid, cataName) => {
+    const header = localStorage.getItem("_tokenCode");
     setIsActive(true);
     setCategoriData(catid);
     setCataNameSlg(cataName);
     try {
-      const response = await API.subCategoryId(catid);
+      const response = await API.subCategoryId(catid, header);
+      console.log("responseddd", response);
       setTableData(response.data.data);
     } catch (error) {}
   };
 
   const activeButton = () => {
     setIsActive(false);
+    setCataNameSlg("All");
     setCategoriData("");
     getAll_subcatagori();
   };
 
   const getAll_subcatagori = async () => {
+    const header = localStorage.getItem("_tokenCode");
     try {
-      const response = await API.getMain_subCategory();
+      const response = await API.getMain_subCategory(header);
       console.log("responseGGG", response);
       setTableData(response.data.data);
     } catch (error) {}
@@ -36,7 +40,7 @@ const Category = () => {
   const get_categoryList = async () => {
     const header = localStorage.getItem("_tokenCode");
     try {
-      const response = await API.get_subCategory();
+      const response = await API.get_subCategory(header);
       console.log("response", response);
       setCatagoriMain(response.data.data);
     } catch (error) {}
@@ -80,7 +84,12 @@ const Category = () => {
             ))}
           </div>
         </div>
-        <Genres cataNameSlg={cataNameSlg} tableData={tableData} />
+        {tableData === "" || tableData === undefined ? (
+          ""
+        ) : (
+          <Genres cataNameSlg={cataNameSlg} tableData={tableData} />
+        )}
+
         <SongCarousal cateTitle="Popular Occasions" />
       </div>
     </>

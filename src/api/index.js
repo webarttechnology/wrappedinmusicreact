@@ -60,31 +60,47 @@ export const resend_otp = async (data) => {
     return e.response;
   }
 };
-export const get_subCategory = async (data) => {
+export const get_subCategory = async (header) => {
   try {
     const url = c.CATAGORIES;
-    const res = await axios.get(url);
+    const res = await axios.get(url, {
+      headers: JSON.parse(header),
+    });
     return res;
   } catch (e) {
     return e.response;
   }
 };
-export const getMain_subCategory = async (data) => {
+export const getMain_subCategory = async (header) => {
   try {
     const url = c.SUBCATAGORIES;
-    const res = await axios.get(url, data);
+    const res = await axios.get(url, {
+      headers: JSON.parse(header),
+    });
     return res;
   } catch (e) {
     return e.response;
   }
 };
 
-export const subCategoryId = async (data) => {
-  console.log("data", data);
+export const subCategoryId = async (data, header) => {
   try {
     const url = c.SUBCATAGORIES + "/categorywise/" + data;
-    console.log("url", url);
-    const res = await axios.get(url, data);
+    const res = await axios.get(url, {
+      headers: JSON.parse(header),
+    });
+    return res;
+  } catch (e) {
+    return e.response;
+  }
+};
+
+export const subCategoryIdDetails = async (data, header) => {
+  try {
+    const url = c.SUBCATAGORIES + "/" + data;
+    const res = await axios.get(url, {
+      headers: JSON.parse(header),
+    });
     return res;
   } catch (e) {
     return e.response;
