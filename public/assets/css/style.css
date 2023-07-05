@@ -8046,3 +8046,50 @@ input[type="range"]:active::-moz-range-thumb {
 .ms_nav_wrapper::-webkit-scrollbar-thumb:hover {
   background: #b34e00;
 }
+
+.voiceRecordSection {
+  padding: 50px;
+}
+audio {
+  position: absolute;
+  top: 65%;
+  z-index: 9999;
+  left: 65%;
+  transform: translate(-50%, -50%);
+}
+.audio-recorder {
+  background-color: #ebebeb;
+  box-shadow: 0 2px 5px #bebebe;
+  border-radius: 50% !important;
+  box-sizing: border-box;
+  color: #000;
+  width: 100px !important;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease-in;
+  -webkit-tap-highlight-color: transparent;
+  height: 100px !important;
+  justify-content: center;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  -ms-border-radius: 50% !important;
+  -o-border-radius: 50% !important;
+  margin: auto;
+}
+.audio-recorder-mic {
+  box-sizing: content-box;
+  cursor: pointer;
+  height: 50px !important;
+  color: #f50;
+  padding: 12px;
+  filter: contrast(0.5);
+}
+.recording {
+  border-radius: 12px !important;
+  width: 300px !important;
+  transition: all 0.2s ease-out;
+  background: #ffffff !important;
+}
+.voiceForm {
+  margin-top: 20px;
+}

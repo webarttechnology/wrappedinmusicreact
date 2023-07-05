@@ -15,6 +15,7 @@ import SignUp from "../pages/SignUp";
 import MyAccount from "../pages/MyAccount";
 import ForgotPassword from "../pages/ForgotPassword";
 import CategoryDetails from "../pages/CategoryDetails";
+import VoiceMess from "../pages/VoiceMess";
 const AppRouter = () => {
   const [isLogin, setIsLogin] = useState(
     JSON.stringify(localStorage.getItem("isLogin"))
@@ -51,6 +52,7 @@ const AppRouter = () => {
               <Route path="/contact-us" element={<Contact />} />
               <Route path="/category-details" element={<CategoryDetails />} />
 
+              <Route path="/voice-message" element={<VoiceMess />} />
               <Route
                 path="/signup"
                 element={<SignUp setIsLogin={setIsLogin} />}

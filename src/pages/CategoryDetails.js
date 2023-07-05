@@ -3,6 +3,7 @@ import InnerBanner from "../components/InnerBanner";
 import * as API from "../api/index";
 import { useLocation } from "react-router";
 import { IMG, NOIMG } from "../api/constant";
+import { Link } from "react-router-dom";
 const CategoryDetails = () => {
   const location = useLocation();
   console.log("location", location);
@@ -70,9 +71,13 @@ const CategoryDetails = () => {
                     </li>
 
                     <li>
-                      <a href="#" class="cart_btn">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                      </a>
+                      <Link
+                        to="/voice-message"
+                        class="cart_btn"
+                        state={{ songId: item.id }}
+                      >
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                      </Link>
                     </li>
                   </ul>
                 ))}
