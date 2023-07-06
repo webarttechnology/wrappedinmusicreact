@@ -8052,10 +8052,10 @@ input[type="range"]:active::-moz-range-thumb {
 }
 audio {
   position: absolute;
-  top: 65%;
   z-index: 9999;
-  left: 65%;
+  left: 53%;
   transform: translate(-50%, -50%);
+  top: 119%;
 }
 .audio-recorder {
   background-color: #ebebeb;
@@ -8096,4 +8096,31 @@ audio {
 }
 .voiceForm {
   margin-top: 20px;
+}
+.voiceMess label {
+  width: auto !important;
+}
+.voiceForm .nav-tabs .nav-link.active {
+  margin: 0 10px;
+  cursor: pointer;
+  border: 1px solid #cd8200;
+  border-radius: 10px;
+  background: #cd8200;
+  color: #fff;
+  padding: 10px 20px;
+}
+.voiceForm .nav-tabs {
+  border: none;
+}
+.voiceForm .nav-tabs .nav-link {
+  margin: 0 10px;
+  cursor: pointer;
+  border: 1px solid #cd8200;
+  border-radius: 10px;
+  color: #fff;
+  padding: 10px 20px;
+}
+.voiceForm .tab-content {
+  display: block;
+  padding-top: 35px;
 }

@@ -45,12 +45,18 @@ const AppRouter = () => {
             <Header isOpen={isOpen} />
             <Routes>
               <Route path="/" element={<Base />} />
-              <Route path="/songs" element={<Song />} />
-              <Route path="/category" element={<Category />} />
+              <Route path="/songs" element={<Song setIsLogin={setIsLogin} />} />
+              <Route
+                path="/category"
+                element={<Category setIsLogin={setIsLogin} />}
+              />
               <Route path="/wrapin-music" element={<WrapInMusic />} />
               <Route path="/testimonials" element={<Testimonialss />} />
               <Route path="/contact-us" element={<Contact />} />
-              <Route path="/category-details" element={<CategoryDetails />} />
+              <Route
+                path="/category-details/:id"
+                element={<CategoryDetails />}
+              />
 
               <Route path="/voice-message" element={<VoiceMess />} />
               <Route

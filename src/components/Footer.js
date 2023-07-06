@@ -1,13 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = ({ isOpen }) => {
   return (
     <div>
       <div class="ms_footer_wrapper">
         <div class="ms_footer_logo">
-          <a href="index.html">
+          <Link to="/">
             <img src="assets/images/logo-m.png" alt="" />
-          </a>
+          </Link>
         </div>
         <div class={isOpen ? "ms_footer_inner footer_padd" : "ms_footer_inner"}>
           <div class="row">

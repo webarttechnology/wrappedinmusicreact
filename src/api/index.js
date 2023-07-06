@@ -85,8 +85,8 @@ export const getMain_subCategory = async (header) => {
 
 export const subCategoryId = async (data, header) => {
   try {
-    const url = c.SUBCATAGORIES + "/categorywise/" + data;
-    const res = await axios.get(url, {
+    const url = c.SUBCATAGORIES + "/categorywise";
+    const res = await axios.post(url, data, {
       headers: JSON.parse(header),
     });
     return res;
@@ -97,8 +97,8 @@ export const subCategoryId = async (data, header) => {
 
 export const subCategoryIdDetails = async (data, header) => {
   try {
-    const url = c.SUBCATAGORIES + "/" + data;
-    const res = await axios.get(url, {
+    const url = c.SUBCATAGORIES;
+    const res = await axios.post(url, data, {
       headers: JSON.parse(header),
     });
     return res;

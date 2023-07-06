@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Sidebar = ({ isOpen, sidebarOpen, isLogin }) => {
   return (
@@ -13,14 +13,14 @@ const Sidebar = ({ isOpen, sidebarOpen, isLogin }) => {
         <div class="ms_sidemenu_inner">
           <div class="ms_logo_inner">
             <div class="ms_logo">
-              <a href="index.html">
+              <Link to="/">
                 <img src="assets/images/logo-m.png" alt="" class="img-fluid" />
-              </a>
+              </Link>
             </div>
             <div class="ms_logo_open">
-              <a href="index.html">
+              <Link to="/">
                 <img src="assets/images/logo-m.png" alt="" class="img-fluid" />
-              </a>
+              </Link>
             </div>
           </div>
           <div class="ms_nav_wrapper">

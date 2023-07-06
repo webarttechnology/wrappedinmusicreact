@@ -20,19 +20,74 @@ const VoiceMess = () => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-md-7">
-              <div class="ms_profile_box" style={{ width: "100%" }}>
-                <AudioRecorder
-                  recorderControls={recorderControls}
-                  onRecordingComplete={addAudioElement}
-                  audioTrackConstraints={{
-                    noiseSuppression: true,
-                    echoCancellation: true,
-                  }}
-                  downloadOnSavePress={false}
-                  downloadFileExtension="mp3"
-                />
+              <div
+                class="ms_profile_box"
+                style={{ width: "100%", height: "100%" }}
+              >
                 <div class="ms_pro_form voiceForm">
-                  <div class="form-group">
+                  <ul
+                    class="nav nav-tabs justify-content-center"
+                    id="myTab"
+                    role="tablist"
+                  >
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link active"
+                        id="home-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#home"
+                        type="button"
+                        role="tab"
+                        aria-controls="home"
+                        aria-selected="true"
+                      >
+                        I Have My Own Script
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link"
+                        id="profile-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#profile"
+                        type="button"
+                        role="tab"
+                        aria-controls="profile"
+                        aria-selected="false"
+                      >
+                        Choose a Preset Script
+                      </button>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="myTabContent">
+                    <div
+                      class="tab-pane fade show active"
+                      id="home"
+                      role="tabpanel"
+                      aria-labelledby="home-tab"
+                    >
+                      <AudioRecorder
+                        recorderControls={recorderControls}
+                        onRecordingComplete={addAudioElement}
+                        audioTrackConstraints={{
+                          noiseSuppression: true,
+                          echoCancellation: true,
+                        }}
+                        downloadOnSavePress={true}
+                        downloadFileExtension="mp3"
+                      />
+                    </div>
+                    <div
+                      class="tab-pane fade"
+                      id="profile"
+                      role="tabpanel"
+                      aria-labelledby="profile-tab"
+                    >
+                      ...
+                    </div>
+                  </div>
+
+                  {/* <div class="form-group">
                     <label>First Name</label>
                     <input
                       type="text"
@@ -55,60 +110,13 @@ const VoiceMess = () => {
                       placeholder="Email"
                       class="form-control"
                     />
-                  </div>
-                  <div class="form-group">
-                    <label>Address</label>
-                    <input
-                      type="text"
-                      placeholder="Address"
-                      class="form-control"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label>City</label>
-                    <input
-                      type="text"
-                      placeholder="City"
-                      class="form-control"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label>Zip Code</label>
-                    <input
-                      type="text"
-                      placeholder="Zip Code"
-                      class="form-control"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label>Country</label>
-                    <select
-                      class="form-control"
-                      aria-label="Default select example"
-                    >
-                      <option selected>---Default---</option>
-                      <option value="USA">United States</option>
-                      <option value="Canada">Canada</option>
-                      <option value="U.K">Brazil</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label>State</label>
-                    <select
-                      class="form-control"
-                      aria-label="Default select example"
-                    >
-                      <option selected>---Default---</option>
-                      <option value="USA">California</option>
-                      <option value="Canada">New York</option>
-                      <option value="U.K">San Francisco</option>
-                    </select>
-                  </div>
-                  <div class="pro-form-btn text-center marger_top15">
+                  </div> */}
+
+                  {/* <div class="pro-form-btn text-center marger_top15">
                     <a href="#" class="ms_btn">
                       Submit
                     </a>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

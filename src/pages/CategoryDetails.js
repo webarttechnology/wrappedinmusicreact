@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react";
 import InnerBanner from "../components/InnerBanner";
 import * as API from "../api/index";
-import { useLocation } from "react-router";
+import { useLocation, useParams } from "react-router";
 import { IMG, NOIMG } from "../api/constant";
 import { Link } from "react-router-dom";
 const CategoryDetails = () => {
   const location = useLocation();
-  console.log("location", location);
+  const params = useParams();
+  console.log("location", location, params);
   const [cataGoriData, setCataGoriData] = useState([]);
   const [songData, setSongData] = useState([]);
   const getVatagoriy_details = async () => {
     const header = localStorage.getItem("_tokenCode");
     try {
-      const response = await API.subCategoryIdDetails(
-        location.state.id,
-        header
-      );
+      const reqObj = {
+        category_id: location.state.id,
+        subcategory_id: params.id,
+      };
+      const response = await API.subCategoryIdDetails(reqObj, header);
+      console.log("response", response);
       setCataGoriData(response.data.data);
       setSongData(response.data.data.music);
     } catch (error) {}
