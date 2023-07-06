@@ -17,7 +17,10 @@ const CategoryDetails = () => {
         category_id: location.state.id,
         subcategory_id: params.id,
       };
-      const response = await API.subCategoryIdDetails(reqObj, header);
+      const response = await API.subCategoryIdDetails(
+        location.state.id,
+        header
+      );
       console.log("response", response);
       setCataGoriData(response.data.data);
       setSongData(response.data.data.music);

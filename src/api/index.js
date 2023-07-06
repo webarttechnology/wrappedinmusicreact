@@ -97,8 +97,8 @@ export const subCategoryId = async (data, header) => {
 
 export const subCategoryIdDetails = async (data, header) => {
   try {
-    const url = c.SUBCATAGORIES;
-    const res = await axios.post(url, data, {
+    const url = c.SUBCATAGORIES + "/" + data;
+    const res = await axios.get(url, {
       headers: JSON.parse(header),
     });
     return res;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import InnerBanner from "../components/InnerBanner";
 import { Link, useNavigate } from "react-router-dom";
 import * as API from "../api/index";
-import { NOIMG } from "../api/constant";
+import { IMG, NOIMG } from "../api/constant";
 const Song = ({ setIsLogin }) => {
   const [catagoriMain, setCatagoriMain] = useState([]);
   const navigate = useNavigate();
@@ -48,11 +48,15 @@ const Song = ({ setIsLogin }) => {
           </div>
           <div class="row justify-content-center">
             {catagoriMain.map((item, index) => (
-              <div class="col-lg-3 col-md-6 mx-7">
+              <div class="col-lg-3 col-md-6 mx-7" key={index}>
                 <Link to="/category">
                   <div class="ms_rcnt_box marger_bottom30">
                     <div class="ms_rcnt_box_img bxyimg">
-                      <img src={NOIMG + item.image} alt="" class="img-fluid" />
+                      <img
+                        src={item.image === "" ? NOIMG : IMG + item.image}
+                        alt=""
+                        class="img-fluid"
+                      />
                       <div class="ms_main_overlay">
                         <div class="ms_box_overlay"></div>
                       </div>

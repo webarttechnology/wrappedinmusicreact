@@ -41,7 +41,7 @@ const Category = ({ setIsLogin }) => {
 
   const categoriy_details = async (catid, cataName) => {
     const header = localStorage.getItem("_tokenCode");
-    console.log("cataName", cataName);
+
     setIsActive(true);
     setCategoriData(catid);
     setCataNameSlg(cataName);

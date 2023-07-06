@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { IMG, NOIMG } from "../api/constant";
 
 const Genres = ({ tableData, cataNameSlg }) => {
   return (
@@ -22,7 +23,7 @@ const Genres = ({ tableData, cataNameSlg }) => {
               >
                 <div class="ms_genres_box">
                   <img
-                    src="assets/images/genrs/img1.jpg"
+                    src={item.image === "" ? NOIMG : IMG + item.image}
                     alt=""
                     class="img-fluid"
                   />

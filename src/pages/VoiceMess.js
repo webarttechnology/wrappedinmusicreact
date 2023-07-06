@@ -83,7 +83,14 @@ const VoiceMess = () => {
                       role="tabpanel"
                       aria-labelledby="profile-tab"
                     >
-                      ...
+                      <div class="form-group">
+                        <label>Select Script From list</label>
+                        <select class="form-control">
+                          <option>--- Select ---</option>
+                          <option>Script 1</option>
+                          <option>Script 2</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
 
