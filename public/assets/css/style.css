@@ -3846,9 +3846,13 @@ button.save_btn:hover {
 }
 .ms_pro_form .ms_btn {
   height: 40px;
-  width: 140px;
+  /* width: 140px; */
   line-height: 43px;
   margin-left: 15px;
+  cursor: pointer;
+}
+.margin_top {
+  margin-top: 140px;
 }
 .ms_profile_wrapper h1,
 .ms_account_wrapper h2 {
@@ -8123,4 +8127,18 @@ audio {
 .voiceForm .tab-content {
   display: block;
   padding-top: 35px;
+}
+.decription {
+  padding: 20px;
+  border: 2px solid #e07722;
+  border-radius: 20px;
+  margin: 0px 20px 20px;
+}
+.decription p {
+  color: #fff;
+  text-align: left;
+}
+.messPlacement {
+  margin-top: 50px;
+  width: 100% !important;
 }

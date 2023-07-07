@@ -10,3 +10,4 @@ export const URL = "http://192.168.1.225:3000/api/frontend";
 export const SIGNUP = `${URL}/users`;
 export const CATAGORIES = `${URL}/category`;
 export const SUBCATAGORIES = `${URL}/subcategory`;
+export const SCRIPT = `${URL}/guide`;

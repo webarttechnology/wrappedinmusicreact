@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router";
 import InnerBanner from "../components/InnerBanner";
 import { AudioRecorder, useAudioRecorder } from "react-audio-voice-recorder";
-
+import * as API from "../api/index";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 const VoiceMess = () => {
+  const [script, setScript] = useState([]);
+  const [sortDec, setSortDec] = useState("");
+  const guideneScrit = async () => {
+    const header = localStorage.getItem("_tokenCode");
+    try {
+      const response = await API.scriptGuide(header);
+      console.log("response", response);
+      setScript(response.data.data);
+    } catch (error) {}
+  };
+
   const location = useLocation();
   const recorderControls = useAudioRecorder();
   const addAudioElement = (blob) => {
@@ -13,13 +26,18 @@ const VoiceMess = () => {
     audio.controls = true;
     document.body.appendChild(audio);
   };
+
+  useEffect(() => {
+    guideneScrit();
+  }, []);
+
   return (
     <>
       <InnerBanner />
       <div className="voiceRecordSection">
         <div className="container">
           <div className="row justify-content-center">
-            <div className="col-md-7">
+            <div className="col-md-9">
               <div
                 class="ms_profile_box"
                 style={{ width: "100%", height: "100%" }}
@@ -76,6 +94,12 @@ const VoiceMess = () => {
                         downloadOnSavePress={true}
                         downloadFileExtension="mp3"
                       />
+                      <Link
+                        to="/message-placement"
+                        className="ms_btn margin_top"
+                      >
+                        Confirm Audio
+                      </Link>
                     </div>
                     <div
                       class="tab-pane fade"
@@ -85,12 +109,40 @@ const VoiceMess = () => {
                     >
                       <div class="form-group">
                         <label>Select Script From list</label>
-                        <select class="form-control">
+                        <select
+                          class="form-control"
+                          onChange={(e) => setSortDec(e.target.value)}
+                        >
                           <option>--- Select ---</option>
-                          <option>Script 1</option>
-                          <option>Script 2</option>
+                          {script.map((item, index) => (
+                            <option key={index} value={item.script_des}>
+                              {item.name}
+                            </option>
+                          ))}
                         </select>
                       </div>
+                      {sortDec === "" ? null : (
+                        <div className="decription">
+                          <p>{sortDec}</p>
+                        </div>
+                      )}
+
+                      <AudioRecorder
+                        recorderControls={recorderControls}
+                        onRecordingComplete={addAudioElement}
+                        audioTrackConstraints={{
+                          noiseSuppression: true,
+                          echoCancellation: true,
+                        }}
+                        downloadOnSavePress={true}
+                        downloadFileExtension="mp3"
+                      />
+                      <Link
+                        to="/message-placement"
+                        className="ms_btn margin_top"
+                      >
+                        Confirm Audio
+                      </Link>
                     </div>
                   </div>
 
