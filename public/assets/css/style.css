@@ -8142,3 +8142,51 @@ audio {
   margin-top: 50px;
   width: 100% !important;
 }
+.headingC {
+  font-size: 30px;
+  margin-bottom: 25px;
+}
+.songDetais {
+}
+.musicheading {
+  font-size: 30px;
+  color: #fff;
+  text-align: left;
+  margin-bottom: 20px;
+}
+.musiDetImg {
+  margin-right: 20px;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+}
+.musicPrice {
+  color: goldenrod;
+  display: block;
+  text-align: left;
+  font-size: 30px;
+  margin: 0px 0px 20px 0px;
+}
+.ownMusic {
+  color: #fff;
+  text-align: left;
+  display: block;
+  font-size: 20px;
+}
+.ownMusic i {
+  color: goldenrod;
+}
+.songDetais p {
+  margin-top: 20px;
+}
+.commonColor {
+  color: goldenrod;
+}
+.noRechor {
+  font-size: 25px;
+  color: #fff;
+  text-align: center;
+  margin: 20px 0px;
+}

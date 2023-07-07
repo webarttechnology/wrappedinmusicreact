@@ -17,6 +17,7 @@ import ForgotPassword from "../pages/ForgotPassword";
 import CategoryDetails from "../pages/CategoryDetails";
 import VoiceMess from "../pages/VoiceMess";
 import MessagePlacePage from "../pages/MessagePlacePage";
+import MusicDetails from "../pages/MusicDetails";
 const AppRouter = () => {
   const [isLogin, setIsLogin] = useState(
     JSON.stringify(localStorage.getItem("isLogin"))
@@ -56,6 +57,7 @@ const AppRouter = () => {
               <Route path="/contact-us" element={<Contact />} />
               <Route path="/category-details" element={<CategoryDetails />} />
               <Route path="/message-placement" element={<MessagePlacePage />} />
+              <Route path="/order-details" element={<MusicDetails />} />
               <Route path="/voice-message" element={<VoiceMess />} />
               <Route
                 path="/signup"

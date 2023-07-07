@@ -17,7 +17,7 @@ const Genres = ({ tableData, cataNameSlg }) => {
           </div>
           {tableData.map((item, index) => (
             <div class="col-lg-4" key={index}>
-              <Link to="/category-details" state={{ id: item.category_id }}>
+              <Link to="/category-details" state={{ id: item.id }}>
                 <div class="ms_genres_box">
                   <img
                     src={item.image === "" ? NOIMG : IMG + item.image}

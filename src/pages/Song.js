@@ -53,7 +53,7 @@ const Song = ({ setIsLogin }) => {
                   <div class="ms_rcnt_box marger_bottom30">
                     <div class="ms_rcnt_box_img bxyimg">
                       <img
-                        src={item.image === "" ? NOIMG : IMG + item.image}
+                        src="assets/images/artist/artist2.jpg"
                         alt=""
                         class="img-fluid"
                       />
