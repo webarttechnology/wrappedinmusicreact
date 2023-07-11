@@ -1,13 +1,49 @@
 import React from "react";
-
-const EditProfile = () => {
+import * as API from "../api/index";
+import { toast } from "react-toastify";
+const EditProfile = ({ formData, handalerChanges }) => {
+  const userdataUpdate = async () => {
+    const header = localStorage.getItem("_tokenCode");
+    try {
+      const reqObj = {
+        name: formData.name,
+        city: formData.city,
+        state: formData.state,
+        country: formData.country,
+        id: localStorage.getItem("__userId"),
+      };
+      console.log("reqObj", reqObj);
+      const response = await API.getuser_update(reqObj, header);
+      console.log("response", response);
+      if (response.data.success === 1) {
+        toast(response.data.msg, {
+          position: "top-right",
+          autoClose: 5000,
+          type: "success",
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
+    } catch (error) {}
+  };
   return (
     <>
       <div class="ms_profile_box">
         <div class="ms_pro_form">
           <div class="form-group">
             <label>Name</label>
-            <input type="text" placeholder="First Name" class="form-control" />
+            <input
+              type="text"
+              placeholder="First Name"
+              name="name"
+              value={formData.name}
+              onChange={handalerChanges}
+              class="form-control"
+            />
           </div>
           <div class="form-group">
             <label>Email</label>
@@ -16,42 +52,52 @@ const EditProfile = () => {
               type="Email"
               placeholder="Email"
               class="form-control"
+              value={formData.email}
+              name="email"
+              onChange={handalerChanges}
             />
           </div>
           <div class="form-group">
-            <label>Address</label>
-            <input type="text" placeholder="Address" class="form-control" />
-          </div>
-          <div class="form-group">
             <label>City</label>
-            <input type="text" placeholder="City" class="form-control" />
+            <input
+              type="text"
+              value={formData.city}
+              onChange={handalerChanges}
+              name="city"
+              placeholder="City"
+              class="form-control"
+            />
           </div>
-          <div class="form-group">
+          {/* <div class="form-group">
             <label>Zip Code</label>
             <input type="text" placeholder="Zip Code" class="form-control" />
+          </div> */}
+          <div class="form-group">
+            <label>State</label>
+            <input
+              type="text"
+              placeholder="State"
+              value={formData.state}
+              onChange={handalerChanges}
+              name="state"
+              class="form-control"
+            />
           </div>
           <div class="form-group">
             <label>Country</label>
-            <select class="form-control" aria-label="Default select example">
-              <option selected>---Default---</option>
-              <option value="USA">United States</option>
-              <option value="Canada">Canada</option>
-              <option value="U.K">Brazil</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>State</label>
-            <select class="form-control" aria-label="Default select example">
-              <option selected>---Default---</option>
-              <option value="USA">California</option>
-              <option value="Canada">New York</option>
-              <option value="U.K">San Francisco</option>
-            </select>
+            <input
+              type="text"
+              placeholder="Country"
+              value={formData.country}
+              onChange={handalerChanges}
+              name="country"
+              class="form-control"
+            />
           </div>
           <div class="pro-form-btn text-center marger_top15">
-            <a href="#" class="ms_btn">
+            <button onClick={userdataUpdate} class="ms_btn">
               Submit
-            </a>
+            </button>
           </div>
         </div>
       </div>

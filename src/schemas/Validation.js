@@ -23,3 +23,7 @@ export const passwordSchema = Yup.object({
     .required("Please confirm your password")
     .oneOf([Yup.ref("password"), null], "Password must match"),
 });
+
+export const passwordChangeSchema = Yup.object({
+  password: Yup.string().min(8).required("Please enter your password"),
+});

@@ -2,6 +2,7 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 
 const Sidebar = ({ isOpen, sidebarOpen, isLogin }) => {
+  console.log("isLogin", isLogin);
   return (
     <>
       <div
@@ -75,7 +76,7 @@ const Sidebar = ({ isOpen, sidebarOpen, isLogin }) => {
               </li>
               <li>
                 <NavLink
-                  to={isLogin ? "/my-account" : "/signup"}
+                  to={isLogin === true ? "/my-account" : "/login"}
                   title="Register/Login"
                 >
                   <span class="nav_icon">

@@ -1,8 +1,18 @@
-import React from "react";
-import { useNavigate } from "react-router";
+import React, { useEffect, useState } from "react";
+import { Await, useNavigate } from "react-router";
 import EditProfile from "./EditProfile";
+import * as API from "../api/index";
+import ChangesPassword from "./ChangesPassword";
+const initialValues = {
+  name: "",
+  email: "",
+  city: "",
+  state: "",
+  country: "",
+};
 
 const MyAccount = ({ setIsLogin }) => {
+  const [formData, setFormData] = useState(initialValues);
   const navigate = useNavigate();
   const logout = () => {
     localStorage.removeItem("_tokenCode");
@@ -12,6 +22,28 @@ const MyAccount = ({ setIsLogin }) => {
       navigate("/login");
     }
   };
+
+  const handalerChanges = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const userDataGetById = async () => {
+    const header = localStorage.getItem("_tokenCode");
+
+    try {
+      const response = await API.getuserDataID(
+        localStorage.getItem("__userId"),
+        header
+      );
+      setFormData(response.data.data);
+      console.log("response", response);
+    } catch (error) {}
+  };
+  useEffect(() => {
+    userDataGetById();
+  }, []);
+
   return (
     <>
       <div class="ms_genres_wrapper dashboard mbxy">
@@ -19,7 +51,10 @@ const MyAccount = ({ setIsLogin }) => {
           <div class="col-md-12">
             <div class="profile-top">
               <div class="dashboard_img">
-                <img src="assets/images/pro_img.jpg" />
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/3237/3237472.png"
+                  className="w-100"
+                />
               </div>
             </div>
             <div class="profile-bottom">
@@ -30,35 +65,36 @@ const MyAccount = ({ setIsLogin }) => {
               </div>
               <div class="row">
                 <div class="col-md-9">
-                  <h1>Lisa Smith</h1>
+                  <h1>{formData.name}</h1>
                   <p>
-                    <i class="bi bi-globe"></i> Los Angeles, U.S.A
+                    <i class="bi bi-globe"></i> {formData.city},{formData.state}{" "}
+                    ,{formData.country}
                   </p>
-                  <h6>
+                  {/* <h6>
                     <i class="bi bi-person-fill"></i> Lead Hip Hop Singer at
                     Lorem Ipsum
-                  </h6>
+                  </h6> */}
                 </div>
                 <div class="col-md-3">
                   <div class="sclntwrk">
                     <ul>
-                      <li>
+                      {/* <li>
                         <a href="tel:+819 9876654352">
                           <i class="bi bi-telephone"></i> +819 9876654352
                         </a>
-                      </li>
+                      </li> */}
                       <li>
                         <a href="mailto:info@demo.com">
                           <i class="fa fa-envelope-o" aria-hidden="true"></i>{" "}
-                          info@demo.com
+                          {formData.email}
                         </a>
                       </li>
-                      <li>
+                      {/* <li>
                         <a href="#">
                           <i class="fa fa-twitter" aria-hidden="true"></i>
                           @Lisa_Smith
                         </a>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                 </div>
@@ -67,7 +103,7 @@ const MyAccount = ({ setIsLogin }) => {
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                       <li class="nav-item" role="presentation">
                         <button
-                          class="nav-link active"
+                          class="nav-link"
                           id="dashboard-tab"
                           data-bs-toggle="tab"
                           data-bs-target="#dashboard"
@@ -81,7 +117,7 @@ const MyAccount = ({ setIsLogin }) => {
                       </li>
                       <li class="nav-item" role="presentation">
                         <button
-                          class="nav-link"
+                          class="nav-link active"
                           id="profile-tab"
                           data-bs-toggle="tab"
                           data-bs-target="#profile"
@@ -138,18 +174,21 @@ const MyAccount = ({ setIsLogin }) => {
                     </ul>
                     <div class="tab-content text-center" id="myTabContent">
                       <div
-                        class="tab-pane fade show active"
+                        class="tab-pane"
                         id="dashboard"
                         role="tabpanel"
                         aria-labelledby="dashboard-tab"
                       ></div>
                       <div
-                        class="tab-pane fade text-center"
+                        class="tab-pane fade show text-center active"
                         id="profile"
                         role="tabpanel"
                         aria-labelledby="profile-tab"
                       >
-                        <EditProfile />
+                        <EditProfile
+                          handalerChanges={handalerChanges}
+                          formData={formData}
+                        />
                       </div>
                       <div
                         class="tab-pane fade"
@@ -300,47 +339,7 @@ const MyAccount = ({ setIsLogin }) => {
                         role="tabpanel"
                         aria-labelledby="password-tab"
                       >
-                        <div class="ms_profile_box">
-                          <div class="ms_pro_form">
-                            <div class="row">
-                              <div class="col-md-12">
-                                <div class="form-group">
-                                  <label>Old Password</label>
-                                  <input
-                                    type="password"
-                                    placeholder="password"
-                                    class="form-control"
-                                  />
-                                </div>
-                              </div>
-                              <div class="col-md-12">
-                                <div class="form-group">
-                                  <label>New Password</label>
-                                  <input
-                                    type="password"
-                                    placeholder="password"
-                                    class="form-control"
-                                  />
-                                </div>
-                              </div>
-                              <div class="col-md-12">
-                                <div class="form-group">
-                                  <label>Confirm Password *</label>
-                                  <input
-                                    type="password"
-                                    placeholder="password"
-                                    class="form-control"
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                            <div class="pro-form-btn text-center marger_top15">
-                              <a href="#" class="ms_btn">
-                                Submit
-                              </a>
-                            </div>
-                          </div>
-                        </div>
+                        <ChangesPassword />
                       </div>
                       <div
                         class="tab-pane fade"

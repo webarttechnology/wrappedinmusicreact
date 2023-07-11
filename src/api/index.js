@@ -118,3 +118,38 @@ export const scriptGuide = async (header) => {
     return e.response;
   }
 };
+
+export const getuserDataID = async (data, header) => {
+  try {
+    const url = c.SIGNUP + "/" + data;
+    const res = await axios.get(url, {
+      headers: JSON.parse(header),
+    });
+    return res;
+  } catch (e) {
+    return e.response;
+  }
+};
+
+export const getuser_update = async (data, header) => {
+  try {
+    const url = c.SIGNUP + "/user-update";
+    const res = await axios.patch(url, data, {
+      headers: JSON.parse(header),
+    });
+    return res;
+  } catch (e) {
+    return e.response;
+  }
+};
+export const changePassword = async (data, header) => {
+  try {
+    const url = c.SIGNUP + "/password-change";
+    const res = await axios.post(url, data, {
+      headers: JSON.parse(header),
+    });
+    return res;
+  } catch (e) {
+    return e.response;
+  }
+};
