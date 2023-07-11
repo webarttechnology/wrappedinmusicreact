@@ -115,7 +115,7 @@ const VoiceMess = () => {
                         >
                           <option>--- Select ---</option>
                           {script.map((item, index) => (
-                            <option key={index} value={item.script_des}>
+                            <option key={index} value={item.description}>
                               {item.name}
                             </option>
                           ))}
