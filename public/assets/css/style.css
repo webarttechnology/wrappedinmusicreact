@@ -2818,6 +2818,7 @@ button.jp-shuffle .ms_play_control:hover {
 .album_single_img {
   width: 240px;
   float: left;
+  height: 230px;
 }
 .album_single_data {
   padding-bottom: 50px;
@@ -2828,6 +2829,9 @@ button.jp-shuffle .ms_play_control:hover {
 .album_single_img img {
   border-radius: 10px;
   box-shadow: 0px 0px 10px 0px rgba(4, 4, 4, 0.4);
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 .album_single_text {
   width: calc(100% - 240px);

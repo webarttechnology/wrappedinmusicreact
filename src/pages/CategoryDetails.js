@@ -4,13 +4,14 @@ import * as API from "../api/index";
 import { useLocation, useParams } from "react-router";
 import { IMG, NOIMG } from "../api/constant";
 import { Link } from "react-router-dom";
+import { MESSAGE, TOKEN_CODE } from "../schemas/Validation";
 const CategoryDetails = () => {
   const location = useLocation();
+  console.log("location", location.state.id);
   const params = useParams();
-  console.log("location", location, params);
   const [cataGoriData, setCataGoriData] = useState([]);
   const [songData, setSongData] = useState([]);
-  console.log("songData", songData);
+
   const getVatagoriy_details = async () => {
     const header = localStorage.getItem("_tokenCode");
     try {
@@ -23,6 +24,23 @@ const CategoryDetails = () => {
       setSongData(response.data.data.music);
     } catch (error) {}
   };
+
+  const add_music_user = async (songId) => {
+    try {
+      const reqObj = {
+        song_id: songId,
+        registration_id: localStorage.getItem("__userId"),
+      };
+      const response = await API.add_order(reqObj, TOKEN_CODE);
+      if (response.data.success === 1) {
+        MESSAGE(response.data.msg, 1);
+      } else {
+        MESSAGE(response.data.msg);
+      }
+      console.log("response", response);
+    } catch (error) {}
+  };
+
   useEffect(() => {
     getVatagoriy_details();
   }, []);
@@ -83,7 +101,8 @@ const CategoryDetails = () => {
 
                       <li>
                         <Link
-                          to="/voice-message"
+                          onClick={() => add_music_user(item.id)}
+                          //to="/voice-message"
                           class="cart_btn"
                           state={{ songId: item.id }}
                         >

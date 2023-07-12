@@ -1,4 +1,7 @@
+import { toast } from "react-toastify";
 import * as Yup from "yup";
+
+export const TOKEN_CODE = localStorage.getItem("_tokenCode");
 export const userSchema = Yup.object({
   name: Yup.string().min(2).max(20).required("Please enter your name"),
   email: Yup.string().email().required("Please enter your email"),
@@ -27,3 +30,18 @@ export const passwordSchema = Yup.object({
 export const passwordChangeSchema = Yup.object({
   password: Yup.string().min(8).required("Please enter your password"),
 });
+
+// ? TOTAL APLICATION SUCCESS AND ERROR MESSAGE
+export const MESSAGE = (data, status) => {
+  toast(data, {
+    position: "top-right",
+    autoClose: 5000,
+    type: status === 1 ? "success" : "error",
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
+};

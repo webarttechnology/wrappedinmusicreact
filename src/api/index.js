@@ -153,3 +153,15 @@ export const changePassword = async (data, header) => {
     return e.response;
   }
 };
+
+export const add_order = async (data, header) => {
+  try {
+    const url = c.ORDER;
+    const res = await axios.post(url, data, {
+      headers: JSON.parse(header),
+    });
+    return res;
+  } catch (e) {
+    return e.response;
+  }
+};

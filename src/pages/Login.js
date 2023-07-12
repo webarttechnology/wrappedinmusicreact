@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { loginSchema } from "../schemas/Validation";
+import { MESSAGE, loginSchema } from "../schemas/Validation";
 import * as API from "../api/index";
 import { toast } from "react-toastify";
 const initialValues = {
@@ -29,30 +29,10 @@ const Login = ({ setIsLogin }) => {
         localStorage.setItem("isLogin", true);
         setIsLogin(localStorage.getItem("isLogin"));
         localStorage.setItem("__userId", response.data.data.id);
-        toast(response.data.msg, {
-          position: "top-right",
-          autoClose: 5000,
-          type: "success",
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
+        MESSAGE(response.data.msg, 1);
         navigate("/my-account");
       } else {
-        toast(response.data.msg, {
-          position: "top-right",
-          autoClose: 5000,
-          type: "error",
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
+        MESSAGE(response.data.msg);
       }
       console.log("response", response);
     } catch (error) {}
