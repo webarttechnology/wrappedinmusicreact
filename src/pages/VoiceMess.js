@@ -94,6 +94,17 @@ const VoiceMess = () => {
                         downloadOnSavePress={true}
                         downloadFileExtension="mp3"
                       />
+                      <div className="checkBok">
+                        <input
+                          type="checkbox"
+                          id="fruit4"
+                          name="fruit-4"
+                          value="Strawberry"
+                        />
+                        <label for="fruit4" className="">
+                          Enhance my audio (Additional $5 Apply)
+                        </label>
+                      </div>
                       <Link
                         to="/message-placement"
                         className="ms_btn margin_top"

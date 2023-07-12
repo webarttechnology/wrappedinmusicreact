@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import InnerBanner from "../components/InnerBanner";
 import * as API from "../api/index";
-import { useLocation, useParams } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { IMG, NOIMG } from "../api/constant";
 import { Link } from "react-router-dom";
 import { MESSAGE, TOKEN_CODE } from "../schemas/Validation";
 const CategoryDetails = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   console.log("location", location.state.id);
-  const params = useParams();
+
   const [cataGoriData, setCataGoriData] = useState([]);
   const [songData, setSongData] = useState([]);
 
@@ -33,6 +34,7 @@ const CategoryDetails = () => {
       };
       const response = await API.add_order(reqObj, TOKEN_CODE);
       if (response.data.success === 1) {
+        navigate("/voice-message");
         MESSAGE(response.data.msg, 1);
       } else {
         MESSAGE(response.data.msg);

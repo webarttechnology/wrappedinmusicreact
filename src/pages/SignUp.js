@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { userSchema } from "../schemas/Validation.js";
+import { MESSAGE, userSchema } from "../schemas/Validation.js";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import OTPInput from "react-otp-input";
@@ -39,17 +39,8 @@ const SignUp = ({ setIsLogin }) => {
         Authorization: `Bearer ${response.data.token_code}`,
       };
       localStorage.setItem("_tokenCode", JSON.stringify(headerObj));
-      toast(response.data.data.msg, {
-        position: "top-right",
-        autoClose: 5000,
-        type: "success",
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      MESSAGE(response.data.data.msg, 1);
+
       //localStorage.setItem("__userId", response.data.data._id);
     }
   };
@@ -60,24 +51,12 @@ const SignUp = ({ setIsLogin }) => {
         email: values.email,
         otp: otp,
       };
-      console.log("reqObj", reqObj);
       const response = await API.otp_varification(reqObj);
-      console.log("response", response);
       if (response.data.success === 1) {
         setIsLogin(true);
         navigate("/my-account");
       } else {
-        toast(response.data.msg, {
-          position: "top-right",
-          autoClose: 5000,
-          type: "error",
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
+        MESSAGE(response.data.msg);
       }
     } catch (error) {}
   };
@@ -88,19 +67,8 @@ const SignUp = ({ setIsLogin }) => {
         email: values.email,
       };
       const response = await API.resend_otp(reqObj);
-      console.log("response", response);
       if (response.data.success === 1) {
-        toast(response.data.msg, {
-          position: "top-right",
-          autoClose: 5000,
-          type: "success",
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
+        MESSAGE(response.data.msg, 1);
       }
     } catch (error) {}
   };
