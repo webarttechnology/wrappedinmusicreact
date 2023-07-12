@@ -8,7 +8,6 @@ import { MESSAGE, TOKEN_CODE } from "../schemas/Validation";
 const CategoryDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log("location", location.state.id);
 
   const [cataGoriData, setCataGoriData] = useState([]);
   const [songData, setSongData] = useState([]);
@@ -17,7 +16,7 @@ const CategoryDetails = () => {
     const header = localStorage.getItem("_tokenCode");
     try {
       const response = await API.subCategoryIdDetails(
-        location.state.id,
+        localStorage.getItem("subCataId"),
         header
       );
       console.log("response", response);
@@ -44,6 +43,7 @@ const CategoryDetails = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getVatagoriy_details();
   }, []);
 
@@ -102,14 +102,20 @@ const CategoryDetails = () => {
                       </li>
 
                       <li>
-                        <Link
-                          onClick={() => add_music_user(item.id)}
-                          //to="/voice-message"
-                          class="cart_btn"
-                          state={{ songId: item.id }}
-                        >
-                          <i class="fa fa-plus" aria-hidden="true"></i>
-                        </Link>
+                        {item.Orders.length === 0 ? (
+                          <Link class="cart_btn" state={{ songId: item.id }}>
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                          </Link>
+                        ) : (
+                          <Link
+                            onClick={() => add_music_user(item.id)}
+                            //to="/voice-message"
+                            class="cart_btn"
+                            state={{ songId: item.id }}
+                          >
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                          </Link>
+                        )}
                       </li>
                     </ul>
                   ))

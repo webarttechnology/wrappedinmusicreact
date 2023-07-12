@@ -101,7 +101,7 @@ const VoiceMess = () => {
                           name="fruit-4"
                           value="Strawberry"
                         />
-                        <label for="fruit4" className="">
+                        <label for="fruit4" className="textHad">
                           Enhance my audio (Additional $5 Apply)
                         </label>
                       </div>

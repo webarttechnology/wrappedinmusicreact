@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { IMG, NOIMG } from "../api/constant";
 
 const Genres = ({ tableData, cataNameSlg }) => {
+  const subCataId = (data) => {
+    localStorage.setItem("subCataId", data);
+  };
   return (
     <>
       <div class="ms_genres_wrapper">
@@ -17,7 +20,11 @@ const Genres = ({ tableData, cataNameSlg }) => {
           </div>
           {tableData.map((item, index) => (
             <div class="col-lg-4" key={index}>
-              <Link to="/category-details" state={{ id: item.id }}>
+              <Link
+                onClick={() => subCataId(item.id)}
+                to="/category-details"
+                state={{ id: item.id }}
+              >
                 <div class="ms_genres_box">
                   <img
                     src={item.image === "" ? NOIMG : IMG + item.image}

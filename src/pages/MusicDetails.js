@@ -29,7 +29,7 @@ const MusicDetails = () => {
                     Quae, eligendi earum? Consequatur itaque provident.
                   </p>
                   <div class="marger_top15 pro-form-btn text-left text-start">
-                    <Link to="#" class="ms_btn m-0">
+                    <Link to="/thankyou" class="ms_btn m-0">
                       Order Now
                     </Link>
                   </div>

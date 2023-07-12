@@ -18,12 +18,13 @@ import CategoryDetails from "../pages/CategoryDetails";
 import VoiceMess from "../pages/VoiceMess";
 import MessagePlacePage from "../pages/MessagePlacePage";
 import MusicDetails from "../pages/MusicDetails";
+import ThankYou from "../pages/ThankYou";
 const AppRouter = () => {
   const [isLogin, setIsLogin] = useState(
     JSON.stringify(localStorage.getItem("isLogin"))
   );
   const [isOpen, setIsOpen] = useState(false);
-  console.log("isLogin", isLogin);
+
   const sidebarOpen = () => {
     setIsOpen(!isOpen);
   };
@@ -62,6 +63,10 @@ const AppRouter = () => {
               <Route
                 path="/signup"
                 element={<SignUp setIsLogin={setIsLogin} />}
+              />
+              <Route
+                path="/thankyou"
+                element={<ThankYou setIsLogin={setIsLogin} />}
               />
               <Route
                 path="/my-account"
