@@ -19,7 +19,10 @@ import VoiceMess from "../pages/VoiceMess";
 import MessagePlacePage from "../pages/MessagePlacePage";
 import MusicDetails from "../pages/MusicDetails";
 import ThankYou from "../pages/ThankYou";
+import { tracks } from "../commonData/staticData";
 const AppRouter = () => {
+  const [trackData, setTrackData] = useState([]);
+  console.log("trackData", trackData);
   const [isLogin, setIsLogin] = useState(
     JSON.stringify(localStorage.getItem("isLogin"))
   );
@@ -28,6 +31,11 @@ const AppRouter = () => {
   const sidebarOpen = () => {
     setIsOpen(!isOpen);
   };
+
+  const app_musicData = (song, status) => {
+    setTrackData(song);
+  };
+
   return (
     <>
       <Router>
@@ -56,7 +64,10 @@ const AppRouter = () => {
               <Route path="/wrapin-music" element={<WrapInMusic />} />
               <Route path="/testimonials" element={<Testimonialss />} />
               <Route path="/contact-us" element={<Contact />} />
-              <Route path="/category-details" element={<CategoryDetails />} />
+              <Route
+                path="/category-details"
+                element={<CategoryDetails app_musicData={app_musicData} />}
+              />
               <Route path="/message-placement" element={<MessagePlacePage />} />
               <Route path="/order-details" element={<MusicDetails />} />
               <Route path="/voice-message" element={<VoiceMess />} />
@@ -84,7 +95,7 @@ const AppRouter = () => {
           </div>
         </div>
         <Footer isOpen={isOpen} />
-        <AudioTrack />
+        <AudioTrack trackData={tracks} />
       </Router>
     </>
   );

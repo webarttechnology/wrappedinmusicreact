@@ -1,4 +1,5 @@
 import { BsMusicNoteBeamed } from "react-icons/bs";
+import { IMG } from "../../api/constant";
 
 const DisplayTrack = ({
   currentTrack,
@@ -7,16 +8,18 @@ const DisplayTrack = ({
   progressBarRef,
   handleNext,
 }) => {
+  console.log("currentTrack", currentTrack);
   const onLoadedMetadata = () => {
     const seconds = audioRef.current.duration;
     setDuration(seconds);
     progressBarRef.current.max = seconds;
   };
-
+  console.log("currentTrack.music_file", IMG + currentTrack.music_file);
+  //const music_file = "https://samplesongs.netlify.app/Death%20Bed.mp3";
   return (
     <div>
       <audio
-        src={currentTrack.url}
+        src={currentTrack.music_file}
         ref={audioRef}
         onLoadedMetadata={onLoadedMetadata}
         onEnded={handleNext}
@@ -38,7 +41,7 @@ const DisplayTrack = ({
                   )}
                 </span>
                 <div class="que_data">
-                  {currentTrack.title}
+                  {currentTrack.name}
                   <div class="jp-artist-name">{currentTrack.artist}</div>
                 </div>
               </div>
@@ -59,7 +62,7 @@ const DisplayTrack = ({
           )}
         </div>
         <div className="text">
-          <p className="title">{currentTrack.title}</p>
+          <p className="title">{currentTrack.name}</p>
           <p>{currentTrack.artist}</p>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router";
 import { IMG, NOIMG } from "../api/constant";
 import { Link } from "react-router-dom";
 import { MESSAGE, TOKEN_CODE } from "../schemas/Validation";
-const CategoryDetails = () => {
+const CategoryDetails = ({ app_musicData }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -22,6 +22,8 @@ const CategoryDetails = () => {
       console.log("response", response);
       setCataGoriData(response.data.data);
       setSongData(response.data.data.music);
+      app_musicData(response.data.data.music);
+      console.log("music", response.data.data.music);
     } catch (error) {}
   };
 
@@ -89,10 +91,10 @@ const CategoryDetails = () => {
                   songData.map((item, index) => (
                     <ul>
                       <li>
-                        <a href="#">
+                        <Link to="#">
                           <span class="play_no">{index + 1}</span>
                           <span class="play_hover"></span>
-                        </a>
+                        </Link>
                       </li>
                       <li>
                         <a href="#">{item.name}</a>

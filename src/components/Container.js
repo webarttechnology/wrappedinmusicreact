@@ -5,7 +5,6 @@ import Bestsellers from "./Bestsellers";
 import HowItWorks from "./HowItWorks";
 import Testimonials from "./Testimonials";
 import Faq from "./Faq";
-import AudioPlayer from "./music/AudioPlayer";
 
 const Container = () => {
   const video = "assets/wrappervideo.mp4";
@@ -38,7 +37,6 @@ const Container = () => {
           </div>
         </div>
       </div>
-      {/* <AudioPlayer /> */}
 
       <SongCarousal ftitle="Trending Songs" />
       {/* <Genres /> */}
