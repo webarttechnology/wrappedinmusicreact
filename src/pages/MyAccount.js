@@ -9,11 +9,14 @@ const initialValues = {
   city: "",
   state: "",
   country: "",
+  address: "",
+  address1: "",
 };
 
 const MyAccount = ({ setIsLogin }) => {
   const [formData, setFormData] = useState(initialValues);
   const navigate = useNavigate();
+
   const logout = () => {
     localStorage.removeItem("_tokenCode");
     localStorage.removeItem("isLogin");

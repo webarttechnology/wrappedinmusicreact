@@ -24,9 +24,10 @@ const AppRouter = () => {
   const [trackData, setTrackData] = useState([]);
   console.log("trackData", trackData);
   const [isLogin, setIsLogin] = useState(
-    JSON.stringify(localStorage.getItem("isLogin"))
+    JSON.parse(localStorage.getItem("isLogin"))
   );
   const [isOpen, setIsOpen] = useState(false);
+  console.log("isLogin", isLogin);
 
   const sidebarOpen = () => {
     setIsOpen(!isOpen);
@@ -54,44 +55,60 @@ const AppRouter = () => {
             }
           >
             <Header isOpen={isOpen} />
-            <Routes>
-              <Route path="/" element={<Base />} />
-              <Route path="/songs" element={<Song setIsLogin={setIsLogin} />} />
-              <Route
-                path="/category"
-                element={<Category setIsLogin={setIsLogin} />}
-              />
-              <Route path="/wrapin-music" element={<WrapInMusic />} />
-              <Route path="/testimonials" element={<Testimonialss />} />
-              <Route path="/contact-us" element={<Contact />} />
-              <Route
-                path="/category-details"
-                element={<CategoryDetails app_musicData={app_musicData} />}
-              />
-              <Route path="/message-placement" element={<MessagePlacePage />} />
-              <Route path="/order-details" element={<MusicDetails />} />
-              <Route path="/voice-message" element={<VoiceMess />} />
-              <Route
-                path="/signup"
-                element={<SignUp setIsLogin={setIsLogin} />}
-              />
-              <Route
-                path="/thankyou"
-                element={<ThankYou setIsLogin={setIsLogin} />}
-              />
-              <Route
-                path="/my-account"
-                element={<MyAccount setIsLogin={setIsLogin} />}
-              />
-              <Route
-                path="/login"
-                element={<Login setIsLogin={setIsLogin} />}
-              />
-              <Route
-                path="/forgot-password"
-                element={<ForgotPassword setIsLogin={setIsLogin} />}
-              />
-            </Routes>
+            {isLogin ? (
+              <>
+                <Routes>
+                  <Route path="/" element={<Base />} />
+                  <Route
+                    path="/songs"
+                    element={<Song setIsLogin={setIsLogin} />}
+                  />
+                  <Route
+                    path="/category"
+                    element={<Category setIsLogin={setIsLogin} />}
+                  />
+                  <Route path="/wrapin-music" element={<WrapInMusic />} />
+                  <Route path="/testimonials" element={<Testimonialss />} />
+                  <Route path="/contact-us" element={<Contact />} />
+                  <Route
+                    path="/category-details"
+                    element={<CategoryDetails app_musicData={app_musicData} />}
+                  />
+                  <Route
+                    path="/message-placement"
+                    element={<MessagePlacePage />}
+                  />
+                  <Route path="/order-details" element={<MusicDetails />} />
+                  <Route path="/voice-message" element={<VoiceMess />} />
+                  <Route
+                    path="/thankyou"
+                    element={<ThankYou setIsLogin={setIsLogin} />}
+                  />
+                  <Route
+                    path="/my-account"
+                    element={<MyAccount setIsLogin={setIsLogin} />}
+                  />
+                </Routes>
+              </>
+            ) : (
+              <>
+                <Routes>
+                  <Route path="/" element={<Base />} />
+                  <Route
+                    path="/signup"
+                    element={<SignUp setIsLogin={setIsLogin} />}
+                  />
+                  <Route
+                    path="/login"
+                    element={<Login setIsLogin={setIsLogin} />}
+                  />
+                  <Route
+                    path="/forgot-password"
+                    element={<ForgotPassword setIsLogin={setIsLogin} />}
+                  />
+                </Routes>
+              </>
+            )}
           </div>
         </div>
         <Footer isOpen={isOpen} />

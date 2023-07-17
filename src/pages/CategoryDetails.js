@@ -105,10 +105,6 @@ const CategoryDetails = ({ app_musicData }) => {
 
                       <li>
                         {item.Orders.length === 0 ? (
-                          <Link class="cart_btn" state={{ songId: item.id }}>
-                            <i class="fa fa-check" aria-hidden="true"></i>
-                          </Link>
-                        ) : (
                           <Link
                             onClick={() => add_music_user(item.id)}
                             //to="/voice-message"
@@ -116,6 +112,10 @@ const CategoryDetails = ({ app_musicData }) => {
                             state={{ songId: item.id }}
                           >
                             <i class="fa fa-plus" aria-hidden="true"></i>
+                          </Link>
+                        ) : (
+                          <Link class="cart_btn" state={{ songId: item.id }}>
+                            <i class="fa fa-check" aria-hidden="true"></i>
                           </Link>
                         )}
                       </li>

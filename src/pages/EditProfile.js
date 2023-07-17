@@ -1,6 +1,7 @@
 import React from "react";
 import * as API from "../api/index";
 import { toast } from "react-toastify";
+import { USASTATE } from "../commonData/staticData";
 const EditProfile = ({ formData, handalerChanges }) => {
   const userdataUpdate = async () => {
     const header = localStorage.getItem("_tokenCode");
@@ -10,6 +11,8 @@ const EditProfile = ({ formData, handalerChanges }) => {
         city: formData.city,
         state: formData.state,
         country: formData.country,
+        address: formData.address,
+        address1: formData.address1,
         id: localStorage.getItem("__userId"),
       };
       console.log("reqObj", reqObj);
@@ -58,6 +61,28 @@ const EditProfile = ({ formData, handalerChanges }) => {
             />
           </div>
           <div class="form-group">
+            <label>Address</label>
+            <input
+              type="text"
+              placeholder="Address"
+              value={formData.address}
+              onChange={handalerChanges}
+              name="address"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label>Address1</label>
+            <input
+              type="text"
+              placeholder="Address1"
+              value={formData.address1}
+              onChange={handalerChanges}
+              name="address1"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
             <label>City</label>
             <input
               type="text"
@@ -74,14 +99,17 @@ const EditProfile = ({ formData, handalerChanges }) => {
           </div> */}
           <div class="form-group">
             <label>State</label>
-            <input
-              type="text"
-              placeholder="State"
-              value={formData.state}
+            <select
               onChange={handalerChanges}
+              value={formData.state}
               name="state"
               class="form-control"
-            />
+            >
+              <option>--- Select ---</option>
+              {USASTATE.map((item, index) => (
+                <option>{item.name}</option>
+              ))}
+            </select>
           </div>
           <div class="form-group">
             <label>Country</label>

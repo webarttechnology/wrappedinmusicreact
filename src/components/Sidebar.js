@@ -76,7 +76,7 @@ const Sidebar = ({ isOpen, sidebarOpen, isLogin }) => {
               </li>
               <li>
                 <NavLink
-                  to={isLogin === true ? "/my-account" : "/login"}
+                  to={isLogin ? "/my-account" : "/login"}
                   title="Register/Login"
                 >
                   <span class="nav_icon">
