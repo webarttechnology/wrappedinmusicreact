@@ -24,7 +24,7 @@ const VoiceMess = () => {
     const audio = document.createElement("audio");
     audio.src = url;
     audio.controls = true;
-    document.body.appendChild(audio);
+    document.getElementById("#recourdAudio").appendChild(audio);
   };
 
   useEffect(() => {
@@ -84,6 +84,7 @@ const VoiceMess = () => {
                       role="tabpanel"
                       aria-labelledby="home-tab"
                     >
+                      <div id="recourdAudio"></div>
                       <AudioRecorder
                         recorderControls={recorderControls}
                         onRecordingComplete={addAudioElement}

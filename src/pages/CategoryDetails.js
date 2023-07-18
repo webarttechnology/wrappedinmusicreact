@@ -104,7 +104,17 @@ const CategoryDetails = ({ app_musicData }) => {
                       </li>
 
                       <li>
-                        {item.Orders.length === 0 ? (
+                        <Link
+                          onClick={() =>
+                            localStorage.setItem("songId", item.id)
+                          }
+                          to="/voice-message"
+                          class="cart_btn"
+                          state={{ songId: item.id }}
+                        >
+                          <i class="fa fa-plus" aria-hidden="true"></i>
+                        </Link>
+                        {/* {item.Orders.length === 0 ? (
                           <Link
                             onClick={() => add_music_user(item.id)}
                             //to="/voice-message"
@@ -117,7 +127,7 @@ const CategoryDetails = ({ app_musicData }) => {
                           <Link class="cart_btn" state={{ songId: item.id }}>
                             <i class="fa fa-check" aria-hidden="true"></i>
                           </Link>
-                        )}
+                        )} */}
                       </li>
                     </ul>
                   ))
