@@ -19,7 +19,7 @@ const DisplayTrack = ({
   return (
     <div>
       <audio
-        src={currentTrack.music_file}
+        src={IMG + currentTrack.music_file}
         ref={audioRef}
         onLoadedMetadata={onLoadedMetadata}
         onEnded={handleNext}

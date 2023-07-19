@@ -21,8 +21,8 @@ import MusicDetails from "../pages/MusicDetails";
 import ThankYou from "../pages/ThankYou";
 import { tracks } from "../commonData/staticData";
 import * as API from "../api/index";
-const AppRouter = ({ trackData, setTrackData }) => {
-  console.log("trackData", trackData);
+const AppRouter = () => {
+  const [trackData, setTrackData] = useState([]);
   const [isLogin, setIsLogin] = useState(
     JSON.parse(localStorage.getItem("isLogin"))
   );
@@ -35,6 +35,18 @@ const AppRouter = ({ trackData, setTrackData }) => {
   const app_musicData = (song, status) => {
     setTrackData(song);
   };
+
+  const all_musicData = async () => {
+    const header = localStorage.getItem("_tokenCode");
+    try {
+      const response = await API.all_song_list(header);
+      console.log("allMusic", response);
+      setTrackData(response.data.data);
+    } catch (error) {}
+  };
+  useEffect(() => {
+    all_musicData();
+  }, []);
 
   return (
     <>
@@ -111,7 +123,7 @@ const AppRouter = ({ trackData, setTrackData }) => {
           </div>
         </div>
         <Footer isOpen={isOpen} />
-        {trackData.length === 0 ? "" : <AudioTrack trackData={tracks} />}
+        {trackData.length === 0 ? "" : <AudioTrack trackData={trackData} />}
       </Router>
     </>
   );

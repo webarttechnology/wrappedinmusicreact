@@ -12,7 +12,7 @@ const VoiceMess = () => {
     const header = localStorage.getItem("_tokenCode");
     try {
       const response = await API.scriptGuide(header);
-      console.log("response", response);
+      //console.log("response", response);
       setScript(response.data.data);
     } catch (error) {}
   };
@@ -21,10 +21,17 @@ const VoiceMess = () => {
   const recorderControls = useAudioRecorder();
   const addAudioElement = (blob) => {
     const url = URL.createObjectURL(blob);
+    console.log("url", url);
     const audio = document.createElement("audio");
     audio.src = url;
     audio.controls = true;
-    document.getElementById("#recourdAudio").appendChild(audio);
+    var reader = new FileReader();
+    reader.readAsDataURL(blob);
+    reader.onloadend = function () {
+      var base64data = reader.result;
+      //console.log(base64data);
+    };
+    document.body.appendChild(audio);
   };
 
   useEffect(() => {
@@ -92,8 +99,8 @@ const VoiceMess = () => {
                           noiseSuppression: true,
                           echoCancellation: true,
                         }}
-                        downloadOnSavePress={true}
-                        downloadFileExtension="mp3"
+                        //downloadOnSavePress={false}
+                        downloadFileExtension="mp4"
                       />
                       <div className="checkBok">
                         <input
@@ -139,7 +146,7 @@ const VoiceMess = () => {
                         </div>
                       )}
 
-                      <AudioRecorder
+                      {/* <AudioRecorder
                         recorderControls={recorderControls}
                         onRecordingComplete={addAudioElement}
                         audioTrackConstraints={{
@@ -148,7 +155,7 @@ const VoiceMess = () => {
                         }}
                         downloadOnSavePress={true}
                         downloadFileExtension="mp3"
-                      />
+                      /> */}
                       <Link
                         to="/message-placement"
                         className="ms_btn margin_top"
