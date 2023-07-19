@@ -31,7 +31,8 @@ const VoiceMess = () => {
       var base64data = reader.result;
       //console.log(base64data);
     };
-    document.body.appendChild(audio);
+    const audioTag = document.querySelector("#recordAudio");
+    audioTag.appendChild(audio);
   };
 
   useEffect(() => {
@@ -91,7 +92,7 @@ const VoiceMess = () => {
                       role="tabpanel"
                       aria-labelledby="home-tab"
                     >
-                      <div id="recourdAudio"></div>
+                      <div id="recordAudio"></div>
                       <AudioRecorder
                         recorderControls={recorderControls}
                         onRecordingComplete={addAudioElement}
