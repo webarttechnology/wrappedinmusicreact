@@ -165,3 +165,15 @@ export const add_order = async (data, header) => {
     return e.response;
   }
 };
+
+export const all_song_list = async (header) => {
+  try {
+    const url = c.SONG;
+    const res = await axios.get(url, {
+      headers: JSON.parse(header),
+    });
+    return res;
+  } catch (e) {
+    return e.response;
+  }
+};

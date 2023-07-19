@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Base from "../components/Base";
 import Song from "../pages/Song";
@@ -20,14 +20,13 @@ import MessagePlacePage from "../pages/MessagePlacePage";
 import MusicDetails from "../pages/MusicDetails";
 import ThankYou from "../pages/ThankYou";
 import { tracks } from "../commonData/staticData";
-const AppRouter = () => {
-  const [trackData, setTrackData] = useState([]);
+import * as API from "../api/index";
+const AppRouter = ({ trackData, setTrackData }) => {
   console.log("trackData", trackData);
   const [isLogin, setIsLogin] = useState(
     JSON.parse(localStorage.getItem("isLogin"))
   );
   const [isOpen, setIsOpen] = useState(false);
-  console.log("isLogin", isLogin);
 
   const sidebarOpen = () => {
     setIsOpen(!isOpen);
@@ -112,7 +111,7 @@ const AppRouter = () => {
           </div>
         </div>
         <Footer isOpen={isOpen} />
-        <AudioTrack trackData={tracks} />
+        {trackData.length === 0 ? "" : <AudioTrack trackData={tracks} />}
       </Router>
     </>
   );

@@ -12,3 +12,4 @@ export const CATAGORIES = `${URL}/category`;
 export const SUBCATAGORIES = `${URL}/subcategory`;
 export const SCRIPT = `${URL}/guide`;
 export const ORDER = `${URL}/order`;
+export const SONG = `${URL}/song`;
