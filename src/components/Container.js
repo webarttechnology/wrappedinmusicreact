@@ -40,7 +40,7 @@ const Container = () => {
 
       <SongCarousal ftitle="Trending Songs" />
       {/* <Genres /> */}
-      <Bestsellers />
+      {/* <Bestsellers /> */}
       <HowItWorks />
       <SongCarousal title="Custom Messages For Any Occasion" />
       <Testimonials />

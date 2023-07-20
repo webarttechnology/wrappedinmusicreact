@@ -33,13 +33,20 @@ const MyAccount = ({ setIsLogin }) => {
 
   const userDataGetById = async () => {
     const header = localStorage.getItem("_tokenCode");
-
     try {
       const response = await API.getuserDataID(
         localStorage.getItem("__userId"),
         header
       );
       setFormData(response.data.data);
+      if (response.data.is_login === false) {
+        localStorage.removeItem("_tokenCode");
+        localStorage.removeItem("isLogin");
+        setIsLogin(localStorage.removeItem("isLogin"));
+        if (localStorage.getItem("isLogin") === null) {
+          navigate("/login");
+        }
+      }
       console.log("response", response);
     } catch (error) {}
   };

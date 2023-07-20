@@ -5,14 +5,32 @@ import { AudioRecorder, useAudioRecorder } from "react-audio-voice-recorder";
 import * as API from "../api/index";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import ScriptRecord from "./ScriptRecord";
 const VoiceMess = () => {
   const [script, setScript] = useState([]);
   const [sortDec, setSortDec] = useState("");
+  const [voiceMessage, setVoiceMessage] = useState("");
+  const [extraAmount, setExtraAmount] = useState("");
+  const [scriptvalue, setScriptvalue] = useState("");
+  console.log("scriptvalue", scriptvalue);
+  const voiceData = () => {
+    const voiceObj = {
+      recordMess: voiceMessage,
+      add_amount: extraAmount,
+      chooseTab: scriptvalue === "" ? "1" : scriptvalue,
+    };
+    console.log("voiceObj", voiceObj);
+    localStorage.setItem("_voiceData", JSON.stringify(voiceObj));
+  };
+
   const guideneScrit = async () => {
     const header = localStorage.getItem("_tokenCode");
     try {
-      const response = await API.scriptGuide(header);
-      //console.log("response", response);
+      const response = await API.scriptGuide(
+        header,
+        localStorage.getItem("_cataGorid")
+      );
+      console.log("response", response);
       setScript(response.data.data);
     } catch (error) {}
   };
@@ -21,7 +39,6 @@ const VoiceMess = () => {
   const recorderControls = useAudioRecorder();
   const addAudioElement = (blob) => {
     const url = URL.createObjectURL(blob);
-    console.log("url", url);
     const audio = document.createElement("audio");
     audio.src = url;
     audio.controls = true;
@@ -30,6 +47,7 @@ const VoiceMess = () => {
     reader.onloadend = function () {
       var base64data = reader.result;
       //console.log(base64data);
+      setVoiceMessage(base64data);
     };
     const audioTag = document.querySelector("#recordAudio");
     audioTag.appendChild(audio);
@@ -66,6 +84,7 @@ const VoiceMess = () => {
                         role="tab"
                         aria-controls="home"
                         aria-selected="true"
+                        onClick={() => setScriptvalue("1")}
                       >
                         I Have My Own Script
                       </button>
@@ -80,6 +99,7 @@ const VoiceMess = () => {
                         role="tab"
                         aria-controls="profile"
                         aria-selected="false"
+                        onClick={() => setScriptvalue("2")}
                       >
                         Choose a Preset Script
                       </button>
@@ -108,13 +128,15 @@ const VoiceMess = () => {
                           type="checkbox"
                           id="fruit4"
                           name="fruit-4"
-                          value="Strawberry"
+                          value="5"
+                          onChange={(e) => setExtraAmount(e.target.value)}
                         />
                         <label for="fruit4" className="textHad">
                           Enhance my audio (Additional $5 Apply)
                         </label>
                       </div>
                       <Link
+                        onClick={voiceData}
                         to="/message-placement"
                         className="ms_btn margin_top"
                       >
@@ -135,8 +157,8 @@ const VoiceMess = () => {
                         >
                           <option>--- Select ---</option>
                           {script.map((item, index) => (
-                            <option key={index} value={item.description}>
-                              {item.name}
+                            <option key={index} value={item.Script.description}>
+                              {item.Script.name}
                             </option>
                           ))}
                         </select>
@@ -146,18 +168,10 @@ const VoiceMess = () => {
                           <p>{sortDec}</p>
                         </div>
                       )}
-
-                      {/* <AudioRecorder
-                        recorderControls={recorderControls}
-                        onRecordingComplete={addAudioElement}
-                        audioTrackConstraints={{
-                          noiseSuppression: true,
-                          echoCancellation: true,
-                        }}
-                        downloadOnSavePress={true}
-                        downloadFileExtension="mp3"
-                      /> */}
+                      <div id="recordAudioS"></div>
+                      <ScriptRecord setVoiceMessage={setVoiceMessage} />
                       <Link
+                        onClick={voiceData}
                         to="/message-placement"
                         className="ms_btn margin_top"
                       >
@@ -165,37 +179,6 @@ const VoiceMess = () => {
                       </Link>
                     </div>
                   </div>
-
-                  {/* <div class="form-group">
-                    <label>First Name</label>
-                    <input
-                      type="text"
-                      placeholder="First Name"
-                      class="form-control"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label>Last Name</label>
-                    <input
-                      type="text"
-                      placeholder="Last Name"
-                      class="form-control"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label>Email</label>
-                    <input
-                      type="Email"
-                      placeholder="Email"
-                      class="form-control"
-                    />
-                  </div> */}
-
-                  {/* <div class="pro-form-btn text-center marger_top15">
-                    <a href="#" class="ms_btn">
-                      Submit
-                    </a>
-                  </div> */}
                 </div>
               </div>
             </div>

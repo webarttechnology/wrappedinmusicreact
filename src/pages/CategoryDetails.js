@@ -19,28 +19,21 @@ const CategoryDetails = ({ app_musicData }) => {
         localStorage.getItem("subCataId"),
         header
       );
+      localStorage.setItem("_cataGorid", response.data.data.category_id);
       console.log("response", response);
       setCataGoriData(response.data.data);
       setSongData(response.data.data.music);
       app_musicData(response.data.data.music);
-      console.log("music", response.data.data.music);
     } catch (error) {}
   };
 
-  const add_music_user = async (songId) => {
+  const add_music_user = (songId, songAmount) => {
     try {
-      const reqObj = {
+      const songObj = {
         song_id: songId,
-        registration_id: localStorage.getItem("__userId"),
+        song_amount: songAmount,
       };
-      const response = await API.add_order(reqObj, TOKEN_CODE);
-      if (response.data.success === 1) {
-        navigate("/voice-message");
-        MESSAGE(response.data.msg, 1);
-      } else {
-        MESSAGE(response.data.msg);
-      }
-      console.log("response", response);
+      localStorage.setItem("__musicData", JSON.stringify(songObj));
     } catch (error) {}
   };
 
@@ -70,7 +63,7 @@ const CategoryDetails = ({ app_musicData }) => {
                 <p class="singer_name">
                   Category ,{" "}
                   <span className="commonColor">
-                    {cataGoriData.category_id}
+                    {cataGoriData.category_name}
                   </span>
                 </p>
                 <div class="about_artist">{cataGoriData.details}</div>
@@ -82,6 +75,7 @@ const CategoryDetails = ({ app_musicData }) => {
                 <ul class="album_list_name">
                   <li>ID</li>
                   <li>Song Title</li>
+                  <li>Amount</li>
                   <li>GENRES & MOODS</li>
                   <li>Action</li>
                 </ul>
@@ -100,14 +94,15 @@ const CategoryDetails = ({ app_musicData }) => {
                         <a href="#">{item.name}</a>
                       </li>
                       <li>
+                        <a href="#">$ {item.amount}</a>
+                      </li>
+                      <li>
                         <a href="#">Rap / Hip-Hop, Anniversary, heartfe</a>
                       </li>
 
                       <li>
                         <Link
-                          onClick={() =>
-                            localStorage.setItem("songId", item.id)
-                          }
+                          onClick={() => add_music_user(item.id, item.amount)}
                           to="/voice-message"
                           class="cart_btn"
                           state={{ songId: item.id }}

@@ -107,9 +107,10 @@ export const subCategoryIdDetails = async (data, header) => {
   }
 };
 
-export const scriptGuide = async (header) => {
+export const scriptGuide = async (header, data) => {
   try {
-    const url = c.SCRIPT;
+    const url = c.SCRIPT + "/" + data;
+    console.log("_cataGorid", url);
     const res = await axios.get(url, {
       headers: JSON.parse(header),
     });
@@ -170,6 +171,17 @@ export const all_song_list = async (header) => {
   try {
     const url = c.SONG;
     const res = await axios.get(url, {
+      headers: JSON.parse(header),
+    });
+    return res;
+  } catch (e) {
+    return e.response;
+  }
+};
+export const search_song_list = async (data, header) => {
+  try {
+    const url = c.SONG + "/" + "search-songs";
+    const res = await axios.post(url, data, {
       headers: JSON.parse(header),
     });
     return res;

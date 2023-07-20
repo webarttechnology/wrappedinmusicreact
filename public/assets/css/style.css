@@ -2950,7 +2950,7 @@ a.ms_btn.play_btn.btn_pause span.play_all {
 }
 .album_list_wrapper > ul > li {
   display: inline-block;
-  width: 25%;
+  width: 20%;
   color: #cd8200;
   position: relative;
   text-transform: capitalize;
@@ -8058,13 +8058,13 @@ input[type="range"]:active::-moz-range-thumb {
 .voiceRecordSection {
   padding: 50px;
 }
-audio {
+/* audio {
   position: absolute;
   z-index: 9999;
   left: 53%;
   transform: translate(-50%, -50%);
   top: 119%;
-}
+} */
 .audio-recorder {
   background-color: #ebebeb;
   box-shadow: 0 2px 5px #bebebe;
