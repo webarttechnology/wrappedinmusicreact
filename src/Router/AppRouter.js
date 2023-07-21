@@ -21,8 +21,55 @@ import MusicDetails from "../pages/MusicDetails";
 import ThankYou from "../pages/ThankYou";
 
 import * as API from "../api/index";
+import CataDetails from "../pages/CataDetails";
 const AppRouter = () => {
+  const tracks = [
+    {
+      title: "Death Bed",
+      artist: "Powfu",
+      artwork: "https://samplesongs.netlify.app/album-arts/death-bed.jpg",
+      url: "https://samplesongs.netlify.app/Death%20Bed.mp3",
+      id: "1",
+    },
+    {
+      title: "Bad Liar",
+      artist: "Imagine Dragons",
+      artwork: "https://samplesongs.netlify.app/album-arts/bad-liar.jpg",
+      url: "https://samplesongs.netlify.app/Bad%20Liar.mp3",
+      id: "2",
+    },
+    {
+      title: "Faded",
+      artist: "Alan Walker",
+      artwork: "https://samplesongs.netlify.app/album-arts/faded.jpg",
+      url: "https://samplesongs.netlify.app/Faded.mp3",
+      id: "3",
+    },
+    {
+      title: "Hate Me",
+      artist: "Ellie Goulding",
+      artwork: "https://samplesongs.netlify.app/album-arts/hate-me.jpg",
+      url: "https://samplesongs.netlify.app/Hate%20Me.mp3",
+      id: "4",
+    },
+    {
+      title: "Solo",
+      artist: "Clean Bandit",
+      artwork: "https://samplesongs.netlify.app/album-arts/solo.jpg",
+      url: "https://samplesongs.netlify.app/Solo.mp3",
+      id: "5",
+    },
+    {
+      title: "Without Me",
+      artist: "Halsey",
+      artwork: "https://samplesongs.netlify.app/album-arts/without-me.jpg",
+      url: "https://samplesongs.netlify.app/Without%20Me.mp3",
+      id: "6",
+    },
+  ];
+
   const [trackData, setTrackData] = useState([]);
+  const [musicIndex, setMusicIndex] = useState(0);
   const [isLogin, setIsLogin] = useState(
     JSON.parse(localStorage.getItem("isLogin"))
   );
@@ -32,12 +79,16 @@ const AppRouter = () => {
     setIsOpen(!isOpen);
   };
 
-  const app_musicData = (song, status) => {
-    setTrackData(song);
-  };
+  console.log("musicIndex", musicIndex);
 
-  const singMusicPlay = (data) => {
-    console.log("data", data);
+  const singMusicPlay = (index) => {
+    // setIsPlaying(true);
+    // setCurrentTrack(tracks[index]);
+    //setIsPlaying(true);
+    //setCurrentTrack(tracks[index]);
+    // setMusicIndex(index);
+    // singMusicPlayTest();
+    //console.log("singMusicPlay", data);
   };
 
   const all_musicData = async () => {
@@ -85,15 +136,14 @@ const AppRouter = () => {
                   <Route path="/wrapin-music" element={<WrapInMusic />} />
                   <Route path="/testimonials" element={<Testimonialss />} />
                   <Route path="/contact-us" element={<Contact />} />
+                  {/* <Route
+                    path="/category-details"
+                    element={<CategoryDetails setMusicIndex={setMusicIndex} />}
+                  />{" "} */}
                   <Route
                     path="/category-details"
-                    element={
-                      <CategoryDetails
-                        singlData={singMusicPlay}
-                        app_musicData={app_musicData}
-                      />
-                    }
-                  />
+                    element={<CataDetails setMusicIndex={setMusicIndex} />}
+                  />{" "}
                   <Route
                     path="/message-placement"
                     element={<MessagePlacePage />}
@@ -132,7 +182,7 @@ const AppRouter = () => {
           </div>
         </div>
         <Footer isOpen={isOpen} />
-        <AudioTrack />
+        <AudioTrack tracks={tracks} musicIndex={musicIndex} />
       </Router>
     </>
   );

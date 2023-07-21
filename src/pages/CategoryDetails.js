@@ -5,12 +5,71 @@ import { useLocation, useNavigate } from "react-router";
 import { IMG, NOIMG } from "../api/constant";
 import { Link } from "react-router-dom";
 import { MESSAGE, TOKEN_CODE } from "../schemas/Validation";
-const CategoryDetails = ({ singMusicPlay, app_musicData }) => {
+import AudioTrack from "../components/AudioTrack";
+const CategoryDetails = ({ setCurrentTrack, setIsPlaying }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const tracks = [
+    {
+      title: "Death Bed",
+      artist: "Powfu",
+      artwork: "https://samplesongs.netlify.app/album-arts/death-bed.jpg",
+      url: "https://samplesongs.netlify.app/Death%20Bed.mp3",
+      id: "1",
+    },
+    {
+      title: "Bad Liar",
+      artist: "Imagine Dragons",
+      artwork: "https://samplesongs.netlify.app/album-arts/bad-liar.jpg",
+      url: "https://samplesongs.netlify.app/Bad%20Liar.mp3",
+      id: "2",
+    },
+    {
+      title: "Faded",
+      artist: "Alan Walker",
+      artwork: "https://samplesongs.netlify.app/album-arts/faded.jpg",
+      url: "https://samplesongs.netlify.app/Faded.mp3",
+      id: "3",
+    },
+    {
+      title: "Hate Me",
+      artist: "Ellie Goulding",
+      artwork: "https://samplesongs.netlify.app/album-arts/hate-me.jpg",
+      url: "https://samplesongs.netlify.app/Hate%20Me.mp3",
+      id: "4",
+    },
+    {
+      title: "Solo",
+      artist: "Clean Bandit",
+      artwork: "https://samplesongs.netlify.app/album-arts/solo.jpg",
+      url: "https://samplesongs.netlify.app/Solo.mp3",
+      id: "5",
+    },
+    {
+      title: "Without Me",
+      artist: "Halsey",
+      artwork: "https://samplesongs.netlify.app/album-arts/without-me.jpg",
+      url: "https://samplesongs.netlify.app/Without%20Me.mp3",
+      id: "6",
+    },
+  ];
+
   const [cataGoriData, setCataGoriData] = useState([]);
   const [songData, setSongData] = useState([]);
+
+  const musiaChoose = (index) => {
+    setIsPlaying(true);
+    setCurrentTrack(tracks[index]);
+    console.log("index", index);
+  };
+
+  const single_music = (index) => {
+    localStorage.setItem("selectedMusicId", JSON.stringify(index));
+    //setMusicIndex(index);
+    // setTrackIndex(index);
+    //console.log("single_music", index);
+  };
 
   const getVatagoriy_details = async () => {
     const header = localStorage.getItem("_tokenCode");
@@ -23,7 +82,6 @@ const CategoryDetails = ({ singMusicPlay, app_musicData }) => {
       console.log("response", response);
       setCataGoriData(response.data.data);
       setSongData(response.data.data.music);
-      app_musicData(response.data.data.music);
     } catch (error) {}
   };
 
@@ -71,6 +129,9 @@ const CategoryDetails = ({ singMusicPlay, app_musicData }) => {
             </div>
 
             <div class="album_inner_list">
+              {tracks.map((item, index) => (
+                <li onClick={() => musiaChoose(index)}>{item.title}</li>
+              ))}
               <div class="album_list_wrapper">
                 <ul class="album_list_name">
                   <li>ID</li>
@@ -87,7 +148,7 @@ const CategoryDetails = ({ singMusicPlay, app_musicData }) => {
                       <li>
                         <Link
                           to="javascript:void(0)"
-                          onClick={() => singMusicPlay()}
+                          // onClick={() => singMusicPlay(index)}
                         >
                           <span class="play_no">{index + 1}</span>
                           <span class="play_hover"></span>
