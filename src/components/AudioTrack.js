@@ -6,12 +6,22 @@ import ProgressBar from "./music/ProgressBar";
 import { BsCart } from "react-icons/bs";
 import CategoryDetails from "../pages/CategoryDetails";
 import CommonCata from "./CommonCata";
+import CataDetails from "../pages/CataDetails";
 
-const AudioTrack = ({ tracks, musicIndex }) => {
+const AudioTrack = ({
+  tracks,
+  isPlaying,
+  setIsPlaying,
+  trackIndex,
+  setTrackIndex,
+  currentTrack,
+  setCurrentTrack,
+}) => {
+  console.log("tracks", tracks);
   // ? Original music track
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [trackIndex, setTrackIndex] = useState(0);
-  const [currentTrack, setCurrentTrack] = useState(tracks[trackIndex]);
+  // const [isPlaying, setIsPlaying] = useState(false);
+  // const [trackIndex, setTrackIndex] = useState(0);
+  // const [currentTrack, setCurrentTrack] = useState(tracks[trackIndex]);
   const [timeProgress, setTimeProgress] = useState(0);
   const [duration, setDuration] = useState(0);
 
@@ -31,14 +41,14 @@ const AudioTrack = ({ tracks, musicIndex }) => {
 
   return (
     <>
-      <CommonCata
+      {/* <CataDetails
         setIsPlaying={setIsPlaying}
         setCurrentTrack={setCurrentTrack}
-      />
-      <CategoryDetails
+      /> */}
+      {/* <CategoryDetails
         setIsPlaying={setIsPlaying}
         setCurrentTrack={setCurrentTrack}
-      />
+      /> */}
       <div class="ms_player_wrapper">
         <div class="ms_player_close">
           <i class="fa fa-angle-up" aria-hidden="true"></i>
@@ -113,6 +123,8 @@ const AudioTrack = ({ tracks, musicIndex }) => {
                     <div className="col-md-4">
                       <Controls
                         {...{
+                          isPlaying,
+                          setIsPlaying,
                           audioRef,
                           progressBarRef,
                           duration,

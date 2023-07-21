@@ -142,7 +142,7 @@ const AppRouter = () => {
                   />{" "} */}
                   <Route
                     path="/category-details"
-                    element={<CataDetails setMusicIndex={setMusicIndex} />}
+                    element={<CategoryDetails setMusicIndex={setMusicIndex} />}
                   />{" "}
                   <Route
                     path="/message-placement"
@@ -182,7 +182,7 @@ const AppRouter = () => {
           </div>
         </div>
         <Footer isOpen={isOpen} />
-        <AudioTrack tracks={tracks} musicIndex={musicIndex} />
+        {/* <AudioTrack tracks={tracks} musicIndex={musicIndex} /> */}
       </Router>
     </>
   );

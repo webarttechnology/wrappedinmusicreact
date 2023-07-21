@@ -6,10 +6,9 @@ import { IMG, NOIMG } from "../api/constant";
 import { Link } from "react-router-dom";
 import { MESSAGE, TOKEN_CODE } from "../schemas/Validation";
 import AudioTrack from "../components/AudioTrack";
-const CategoryDetails = ({ setCurrentTrack, setIsPlaying }) => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
+import CommonCata from "../components/CommonCata";
+import CataDetails from "./CataDetails";
+const CategoryDetails = () => {
   const tracks = [
     {
       title: "Death Bed",
@@ -54,21 +53,21 @@ const CategoryDetails = ({ setCurrentTrack, setIsPlaying }) => {
       id: "6",
     },
   ];
+  const [musicIndex, setMusicIndex] = useState("");
+  const [songData, setSongData] = useState([]);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [trackIndex, setTrackIndex] = useState(0);
+  const [currentTrack, setCurrentTrack] = useState(tracks[trackIndex]);
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const [cataGoriData, setCataGoriData] = useState([]);
-  const [songData, setSongData] = useState([]);
 
   const musiaChoose = (index) => {
     setIsPlaying(true);
-    setCurrentTrack(tracks[index]);
-    console.log("index", index);
-  };
 
-  const single_music = (index) => {
-    localStorage.setItem("selectedMusicId", JSON.stringify(index));
-    //setMusicIndex(index);
-    // setTrackIndex(index);
-    //console.log("single_music", index);
+    setCurrentTrack(tracks[index]);
   };
 
   const getVatagoriy_details = async () => {
@@ -81,7 +80,8 @@ const CategoryDetails = ({ setCurrentTrack, setIsPlaying }) => {
       localStorage.setItem("_cataGorid", response.data.data.category_id);
       console.log("response", response);
       setCataGoriData(response.data.data);
-      setSongData(response.data.data.music);
+      // setCurrentTrack(response.data.data.music[trackIndex]);
+      //setSongData(response.data.data.music);
     } catch (error) {}
   };
 
@@ -103,6 +103,7 @@ const CategoryDetails = ({ setCurrentTrack, setIsPlaying }) => {
   return (
     <>
       <InnerBanner />
+      {/* <CataDetails /> */}
       <div class="ms_genres_wrapper">
         <div className="row justify-content-center">
           <div className="col-md-9">
@@ -129,9 +130,6 @@ const CategoryDetails = ({ setCurrentTrack, setIsPlaying }) => {
             </div>
 
             <div class="album_inner_list">
-              {tracks.map((item, index) => (
-                <li onClick={() => musiaChoose(index)}>{item.title}</li>
-              ))}
               <div class="album_list_wrapper">
                 <ul class="album_list_name">
                   <li>ID</li>
@@ -140,12 +138,15 @@ const CategoryDetails = ({ setCurrentTrack, setIsPlaying }) => {
                   <li>GENRES & MOODS</li>
                   <li>Action</li>
                 </ul>
-                {songData.length === 0 ? (
+                {tracks.length === 0 ? (
                   <h1 className="noRechor">No Data Found</h1>
                 ) : (
-                  songData.map((item, index) => (
+                  tracks.map((item, index) => (
                     <ul>
-                      <li>
+                      <li
+                        className={musicIndex === item ? "ball" : "calll"}
+                        onClick={() => musiaChoose(index)}
+                      >
                         <Link
                           to="javascript:void(0)"
                           // onClick={() => singMusicPlay(index)}
@@ -154,18 +155,19 @@ const CategoryDetails = ({ setCurrentTrack, setIsPlaying }) => {
                           <span class="play_hover"></span>
                         </Link>
                       </li>
-                      <li>
-                        <Link to="javascript:void(0)">{item.name}</Link>
+                      <li onClick={() => musiaChoose(index)}>
+                        <Link to="javascript:void(0)">{item.title}</Link>
                       </li>
-                      <li>
-                        <Link to="javascript:void(0)">$ {item.amount}</Link>
+                      <li onClick={() => musiaChoose(index)}>
+                        <Link to="javascript:void(0)">
+                          $ 50 :00{item.amount}
+                        </Link>
                       </li>
-                      <li>
+                      <li onClick={() => musiaChoose(index)}>
                         <Link to="javascript:void(0)">
                           Rap / Hip-Hop, Anniversary, heartfe
                         </Link>
                       </li>
-
                       <li>
                         <Link
                           onClick={() => add_music_user(item.id, item.amount)}
@@ -204,6 +206,19 @@ const CategoryDetails = ({ setCurrentTrack, setIsPlaying }) => {
           </a>
         </div>
       </div>
+      {tracks.length === 0 ? (
+        ""
+      ) : (
+        <AudioTrack
+          tracks={tracks}
+          setTrackIndex={setTrackIndex}
+          trackIndex={trackIndex}
+          currentTrack={currentTrack}
+          setCurrentTrack={setCurrentTrack}
+          setIsPlaying={setIsPlaying}
+          isPlaying={isPlaying}
+        />
+      )}
     </>
   );
 };

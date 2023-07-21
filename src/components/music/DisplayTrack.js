@@ -13,7 +13,7 @@ const DisplayTrack = ({
     setDuration(seconds);
     progressBarRef.current.max = seconds;
   };
-
+  console.log("currentTrack.url", currentTrack.url);
   //const  music_file= "https://samplesongs.netlify.app/Death%20Bed.mp3";
   return (
     <div>
@@ -40,8 +40,8 @@ const DisplayTrack = ({
                   )}
                 </span>
                 <div class="que_data">
-                  {currentTrack.name}
-                  <div class="jp-artist-name">{currentTrack.artist}</div>
+                  {currentTrack.title}
+                  {/* <div class="jp-artist-name">{currentTrack.title}</div> */}
                 </div>
               </div>
             </div>

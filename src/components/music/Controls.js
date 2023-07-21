@@ -13,8 +13,10 @@ const Controls = ({
   setTrackIndex,
   setCurrentTrack,
   handleNext,
+  isPlaying,
+  setIsPlaying,
 }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  // const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(60);
   const [muteVolume, setMuteVolume] = useState(false);
   const [isDragging, setIsDragging] = useState("");
@@ -26,7 +28,7 @@ const Controls = ({
   const playAnimationRef = useRef();
 
   const repeat = useCallback(() => {
-    const currentTime = audioRef.current.currentTime;
+    var currentTime = audioRef.current.currentTime;
     setTimeProgress(currentTime);
     progressBarRef.current.value = currentTime;
     progressBarRef.current.style.setProperty(
