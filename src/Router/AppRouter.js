@@ -19,7 +19,7 @@ import VoiceMess from "../pages/VoiceMess";
 import MessagePlacePage from "../pages/MessagePlacePage";
 import MusicDetails from "../pages/MusicDetails";
 import ThankYou from "../pages/ThankYou";
-import { tracks } from "../commonData/staticData";
+
 import * as API from "../api/index";
 const AppRouter = () => {
   const [trackData, setTrackData] = useState([]);
@@ -34,6 +34,10 @@ const AppRouter = () => {
 
   const app_musicData = (song, status) => {
     setTrackData(song);
+  };
+
+  const singMusicPlay = (data) => {
+    console.log("data", data);
   };
 
   const all_musicData = async () => {
@@ -83,7 +87,12 @@ const AppRouter = () => {
                   <Route path="/contact-us" element={<Contact />} />
                   <Route
                     path="/category-details"
-                    element={<CategoryDetails app_musicData={app_musicData} />}
+                    element={
+                      <CategoryDetails
+                        singlData={singMusicPlay}
+                        app_musicData={app_musicData}
+                      />
+                    }
                   />
                   <Route
                     path="/message-placement"
@@ -123,7 +132,7 @@ const AppRouter = () => {
           </div>
         </div>
         <Footer isOpen={isOpen} />
-        {/* {trackData.length === 0 ? "" : <AudioTrack trackData={trackData} />} */}
+        <AudioTrack />
       </Router>
     </>
   );

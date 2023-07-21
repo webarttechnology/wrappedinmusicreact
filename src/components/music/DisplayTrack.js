@@ -8,18 +8,17 @@ const DisplayTrack = ({
   progressBarRef,
   handleNext,
 }) => {
-  console.log("currentTrack", currentTrack);
   const onLoadedMetadata = () => {
     const seconds = audioRef.current.duration;
     setDuration(seconds);
     progressBarRef.current.max = seconds;
   };
-  console.log("currentTrack.music_file", IMG + currentTrack.music_file);
+
   //const  music_file= "https://samplesongs.netlify.app/Death%20Bed.mp3";
   return (
     <div>
       <audio
-        src={IMG + currentTrack.music_file}
+        src={currentTrack.url}
         ref={audioRef}
         onLoadedMetadata={onLoadedMetadata}
         onEnded={handleNext}

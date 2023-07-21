@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router";
 import { IMG, NOIMG } from "../api/constant";
 import { Link } from "react-router-dom";
 import { MESSAGE, TOKEN_CODE } from "../schemas/Validation";
-const CategoryDetails = ({ app_musicData }) => {
+const CategoryDetails = ({ singMusicPlay, app_musicData }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -85,19 +85,24 @@ const CategoryDetails = ({ app_musicData }) => {
                   songData.map((item, index) => (
                     <ul>
                       <li>
-                        <Link to="#">
+                        <Link
+                          to="javascript:void(0)"
+                          onClick={() => singMusicPlay()}
+                        >
                           <span class="play_no">{index + 1}</span>
                           <span class="play_hover"></span>
                         </Link>
                       </li>
                       <li>
-                        <a href="#">{item.name}</a>
+                        <Link to="javascript:void(0)">{item.name}</Link>
                       </li>
                       <li>
-                        <a href="#">$ {item.amount}</a>
+                        <Link to="javascript:void(0)">$ {item.amount}</Link>
                       </li>
                       <li>
-                        <a href="#">Rap / Hip-Hop, Anniversary, heartfe</a>
+                        <Link to="javascript:void(0)">
+                          Rap / Hip-Hop, Anniversary, heartfe
+                        </Link>
                       </li>
 
                       <li>
