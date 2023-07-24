@@ -8,19 +8,26 @@ import { useState } from "react";
 import ScriptRecord from "./ScriptRecord";
 const VoiceMess = () => {
   const [script, setScript] = useState([]);
+  const [scriptId, setScriptId] = useState([]);
   const [sortDec, setSortDec] = useState("");
   const [voiceMessage, setVoiceMessage] = useState("");
   const [extraAmount, setExtraAmount] = useState("");
   const [scriptvalue, setScriptvalue] = useState("");
-  console.log("scriptvalue", scriptvalue);
+
   const voiceData = () => {
     const voiceObj = {
       recordMess: voiceMessage,
       add_amount: extraAmount,
       chooseTab: scriptvalue === "" ? "1" : scriptvalue,
+      scriptId: scriptId,
     };
-    console.log("voiceObj", voiceObj);
     localStorage.setItem("_voiceData", JSON.stringify(voiceObj));
+  };
+
+  const scriptHandaler = (e) => {
+    setScriptId(e.target.value);
+    console.log("e.target.value", e.target.dataDec);
+    guideneScrit();
   };
 
   const guideneScrit = async () => {
@@ -30,8 +37,16 @@ const VoiceMess = () => {
         header,
         localStorage.getItem("_cataGorid")
       );
-      console.log("response", response);
       setScript(response.data.data);
+      console.log("response.data.data", response.data.data);
+
+      response.data.data.map((item, index) => {
+        let found = Object.values(item.id).includes(scriptId);
+        console.log("found", found);
+        if (found) {
+          // code
+        }
+      });
     } catch (error) {}
   };
 
@@ -151,14 +166,15 @@ const VoiceMess = () => {
                     >
                       <div class="form-group">
                         <label>Select Script From list</label>
-                        <select
-                          class="form-control"
-                          onChange={(e) => setSortDec(e.target.value)}
-                        >
+                        <select class="form-control" onChange={scriptHandaler}>
                           <option>--- Select ---</option>
                           {script.map((item, index) => (
-                            <option key={index} value={item.Script.description}>
-                              {item.Script.name}
+                            <option
+                              key={index}
+                              value={item.id}
+                              dataDec={item.description}
+                            >
+                              {item.name}
                             </option>
                           ))}
                         </select>

@@ -85,11 +85,12 @@ const CategoryDetails = () => {
     } catch (error) {}
   };
 
-  const add_music_user = (songId, songAmount) => {
+  const add_music_user = (songId, songAmount, title) => {
     try {
       const songObj = {
         song_id: songId,
-        song_amount: songAmount,
+        song_amount: 50,
+        title: title,
       };
       localStorage.setItem("__musicData", JSON.stringify(songObj));
     } catch (error) {}
@@ -170,7 +171,9 @@ const CategoryDetails = () => {
                       </li>
                       <li>
                         <Link
-                          onClick={() => add_music_user(item.id, item.amount)}
+                          onClick={() =>
+                            add_music_user(item.id, item.amount, item.title)
+                          }
                           to="/voice-message"
                           class="cart_btn"
                           state={{ songId: item.id }}

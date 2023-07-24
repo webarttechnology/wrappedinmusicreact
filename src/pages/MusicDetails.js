@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import InnerBanner from "../components/InnerBanner";
 import { Link } from "react-router-dom";
 
 const MusicDetails = () => {
+  const messgeData = JSON.parse(localStorage.getItem("_messagePalace"));
+  const voiceData = JSON.parse(localStorage.getItem("_voiceData"));
+  const musicData = JSON.parse(localStorage.getItem("__musicData"));
+
+  const orderProduct = async () => {
+    const songAmount = JSON.parse(musicData.song_amount);
+    const extraAmount = JSON.parse(voiceData.add_amount);
+    try {
+      const reqObj = {
+        song_id: musicData.song_id,
+        registration_id: localStorage.getItem("__userId"),
+        amount: songAmount + extraAmount,
+        is_ownscript: voiceData.chooseTab,
+        script_id: "",
+        add_position: messgeData.add_position,
+        Duration: messgeData.duration,
+        music_file: voiceData.recordMess,
+      };
+      console.log("reqObj", reqObj);
+    } catch (error) {}
+  };
+
+  useEffect(() => {}, []);
+
   return (
     <>
       <InnerBanner />
@@ -29,7 +53,7 @@ const MusicDetails = () => {
                     Quae, eligendi earum? Consequatur itaque provident.
                   </p>
                   <div class="marger_top15 pro-form-btn text-left text-start">
-                    <Link to="/thankyou" class="ms_btn m-0">
+                    <Link onClick={orderProduct} class="ms_btn m-0">
                       Order Now
                     </Link>
                   </div>
