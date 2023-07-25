@@ -16,6 +16,7 @@ const AudioTrack = ({
   setTrackIndex,
   currentTrack,
   setCurrentTrack,
+  cataName,
 }) => {
   console.log("tracks", tracks);
   // ? Original music track
@@ -67,6 +68,7 @@ const AudioTrack = ({
                   {...{
                     currentTrack,
                     audioRef,
+                    cataName,
                     setDuration,
                     progressBarRef,
                     handleNext,
@@ -108,9 +110,9 @@ const AudioTrack = ({
                     </li>
                   </ul>
                 </div>
-                <span class="play-left-arrow">
+                {/* <span class="play-left-arrow">
                   <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </span>
+                </span> */}
               </div>
               <div class="jp_queue_wrapper">
                 <span class="que_text" id="myPlaylistQueue">

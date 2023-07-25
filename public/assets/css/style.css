@@ -1574,6 +1574,8 @@ ul.more_option li a:hover .opt_icon .icon_share {
 }
 .ms_genres_box img {
   width: 100%;
+  height: 350px;
+  object-fit: cover;
 }
 .ms_genres_box:hover .ms_box_overlay {
   top: 0;
@@ -2379,11 +2381,11 @@ i.ms_icon.icon_share {
   color: #fff;
   font-size: 16px;
   overflow: hidden;
-  white-space: nowrap;
+
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   max-width: 100%;
-  padding-right: 30px;
+  padding-right: 10px;
 }
 .jp-artist-name {
   color: #dedede;
@@ -4951,7 +4953,7 @@ body.loaded.modal-open .ms_player_wrapper {
   }
   .ms_play_song {
     width: 281px;
-    padding: 15px 0px 15px 25px;
+    padding: 15px 0px 15px 15px;
   }
   .weekly_left span.w_top_no {
     width: 70px;

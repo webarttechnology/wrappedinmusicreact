@@ -7,18 +7,20 @@ const DisplayTrack = ({
   setDuration,
   progressBarRef,
   handleNext,
+  cataName,
 }) => {
   const onLoadedMetadata = () => {
     const seconds = audioRef.current.duration;
     setDuration(seconds);
     progressBarRef.current.max = seconds;
   };
-  console.log("currentTrack.url", currentTrack.url);
+  //console.log("currentTrack.url", currentTrack.url);
   //const  music_file= "https://samplesongs.netlify.app/Death%20Bed.mp3";
   return (
     <div>
       <audio
-        src={currentTrack.url}
+        //src={currentTrack.url}
+        src={IMG + currentTrack.url}
         ref={audioRef}
         onLoadedMetadata={onLoadedMetadata}
         onEnded={handleNext}
@@ -30,7 +32,7 @@ const DisplayTrack = ({
               <div class="jp-track-name">
                 <span class="que_img">
                   {currentTrack.artwork ? (
-                    <img src={currentTrack.artwork} alt="audio avatar" />
+                    <img src={IMG + currentTrack.artwork} alt="audio avatar" />
                   ) : (
                     <div className="icon-wrapper">
                       <span className="audio-icon">
@@ -41,7 +43,7 @@ const DisplayTrack = ({
                 </span>
                 <div class="que_data">
                   {currentTrack.title}
-                  {/* <div class="jp-artist-name">{currentTrack.title}</div> */}
+                  <div class="jp-artist-name">{cataName}</div>
                 </div>
               </div>
             </div>

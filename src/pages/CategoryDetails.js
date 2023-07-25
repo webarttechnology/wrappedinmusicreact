@@ -53,11 +53,23 @@ const CategoryDetails = () => {
       id: "6",
     },
   ];
+  const dataRes = [
+    {
+      id: 32,
+      title: "tttddfdfff",
+      url: "uploads/songs/1690268075142.mp3",
+      artwork: "uploads/songs/image/1690268075171.png",
+      description: "test ghdfhdhd",
+      duration: "5:23",
+      amount: 20,
+      is_active: "1",
+    },
+  ];
   const [musicIndex, setMusicIndex] = useState("");
   const [songData, setSongData] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackIndex, setTrackIndex] = useState(0);
-  const [currentTrack, setCurrentTrack] = useState(tracks[trackIndex]);
+  const [currentTrack, setCurrentTrack] = useState(songData[trackIndex]);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -66,8 +78,7 @@ const CategoryDetails = () => {
 
   const musiaChoose = (index) => {
     setIsPlaying(true);
-
-    setCurrentTrack(tracks[index]);
+    setCurrentTrack(songData[index]);
   };
 
   const getVatagoriy_details = async () => {
@@ -80,8 +91,8 @@ const CategoryDetails = () => {
       localStorage.setItem("_cataGorid", response.data.data.category_id);
       console.log("response", response);
       setCataGoriData(response.data.data);
-      // setCurrentTrack(response.data.data.music[trackIndex]);
-      //setSongData(response.data.data.music);
+      setCurrentTrack(response.data.data.music[trackIndex]);
+      setSongData(response.data.data.music);
     } catch (error) {}
   };
 
@@ -139,10 +150,10 @@ const CategoryDetails = () => {
                   <li>GENRES & MOODS</li>
                   <li>Action</li>
                 </ul>
-                {tracks.length === 0 ? (
+                {songData.length === 0 ? (
                   <h1 className="noRechor">No Data Found</h1>
                 ) : (
-                  tracks.map((item, index) => (
+                  songData.map((item, index) => (
                     <ul>
                       <li
                         className={musicIndex === item ? "ball" : "calll"}
@@ -209,11 +220,12 @@ const CategoryDetails = () => {
           </a>
         </div>
       </div>
-      {tracks.length === 0 ? (
+      {songData.length === 0 ? (
         ""
       ) : (
         <AudioTrack
-          tracks={tracks}
+          cataName={cataGoriData.category_name}
+          tracks={songData}
           setTrackIndex={setTrackIndex}
           trackIndex={trackIndex}
           currentTrack={currentTrack}
