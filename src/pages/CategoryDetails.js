@@ -70,14 +70,16 @@ const CategoryDetails = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackIndex, setTrackIndex] = useState(0);
   const [currentTrack, setCurrentTrack] = useState(songData[trackIndex]);
-
+  console.log("musicIndex", musicIndex);
   const navigate = useNavigate();
   const location = useLocation();
 
   const [cataGoriData, setCataGoriData] = useState([]);
 
-  const musiaChoose = (index) => {
+  const musiaChoose = (index, songid) => {
+    console.log("songid", index);
     setIsPlaying(true);
+    setMusicIndex(songid);
     setCurrentTrack(songData[index]);
   };
 
@@ -156,8 +158,10 @@ const CategoryDetails = () => {
                   songData.map((item, index) => (
                     <ul>
                       <li
-                        className={musicIndex === item ? "ball" : "calll"}
-                        onClick={() => musiaChoose(index)}
+                        className={
+                          musicIndex === item.id ? "songActive" : "calll"
+                        }
+                        onClick={() => musiaChoose(index, item.id)}
                       >
                         <Link
                           to="javascript:void(0)"
@@ -167,15 +171,30 @@ const CategoryDetails = () => {
                           <span class="play_hover"></span>
                         </Link>
                       </li>
-                      <li onClick={() => musiaChoose(index)}>
+                      <li
+                        className={
+                          musicIndex === item.id ? "songActive" : "calll"
+                        }
+                        onClick={() => musiaChoose(index, item.id)}
+                      >
                         <Link to="javascript:void(0)">{item.title}</Link>
                       </li>
-                      <li onClick={() => musiaChoose(index)}>
+                      <li
+                        className={
+                          musicIndex === item.id ? "songActive" : "calll"
+                        }
+                        onClick={() => musiaChoose(index, item.id)}
+                      >
                         <Link to="javascript:void(0)">
-                          $ 50 :00{item.amount}
+                          $ {item.amount} : 00
                         </Link>
                       </li>
-                      <li onClick={() => musiaChoose(index)}>
+                      <li
+                        className={
+                          musicIndex === item.id ? "songActive" : "calll"
+                        }
+                        onClick={() => musiaChoose(index, item.id)}
+                      >
                         <Link to="javascript:void(0)">
                           Rap / Hip-Hop, Anniversary, heartfe
                         </Link>

@@ -18,7 +18,6 @@ const AudioTrack = ({
   setCurrentTrack,
   cataName,
 }) => {
-  console.log("tracks", tracks);
   // ? Original music track
   // const [isPlaying, setIsPlaying] = useState(false);
   // const [trackIndex, setTrackIndex] = useState(0);
@@ -110,9 +109,6 @@ const AudioTrack = ({
                     </li>
                   </ul>
                 </div>
-                {/* <span class="play-left-arrow">
-                  <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </span> */}
               </div>
               <div class="jp_queue_wrapper">
                 <span class="que_text" id="myPlaylistQueue">
