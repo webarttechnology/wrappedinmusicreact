@@ -69,7 +69,6 @@ const AppRouter = () => {
   ];
 
   const [trackData, setTrackData] = useState([]);
-  const [musicIndex, setMusicIndex] = useState(0);
   const [isLogin, setIsLogin] = useState(
     JSON.parse(localStorage.getItem("isLogin"))
   );
@@ -78,8 +77,6 @@ const AppRouter = () => {
   const sidebarOpen = () => {
     setIsOpen(!isOpen);
   };
-
-  console.log("musicIndex", musicIndex);
 
   const singMusicPlay = (index) => {
     // setIsPlaying(true);
@@ -137,10 +134,7 @@ const AppRouter = () => {
                   <Route path="/testimonials" element={<Testimonialss />} />
                   <Route path="/contact-us" element={<Contact />} />
 
-                  <Route
-                    path="/song-list"
-                    element={<CategoryDetails setMusicIndex={setMusicIndex} />}
-                  />
+                  <Route path="/song-list" element={<CategoryDetails />} />
                   <Route
                     path="/message-placement"
                     element={<MessagePlacePage />}
@@ -173,10 +167,7 @@ const AppRouter = () => {
                   <Route path="/testimonials" element={<Testimonialss />} />
                   <Route path="/contact-us" element={<Contact />} />
 
-                  <Route
-                    path="/song-list"
-                    element={<CategoryDetails setMusicIndex={setMusicIndex} />}
-                  />
+                  <Route path="/song-list" element={<CategoryDetails />} />
                   <Route
                     path="/message-placement"
                     element={<MessagePlacePage />}

@@ -9,78 +9,22 @@ import AudioTrack from "../components/AudioTrack";
 import CommonCata from "../components/CommonCata";
 import CataDetails from "./CataDetails";
 const CategoryDetails = () => {
-  const tracks = [
-    {
-      title: "Death Bed",
-      artist: "Powfu",
-      artwork: "https://samplesongs.netlify.app/album-arts/death-bed.jpg",
-      url: "https://samplesongs.netlify.app/Death%20Bed.mp3",
-      id: "1",
-    },
-    {
-      title: "Bad Liar",
-      artist: "Imagine Dragons",
-      artwork: "https://samplesongs.netlify.app/album-arts/bad-liar.jpg",
-      url: "https://samplesongs.netlify.app/Bad%20Liar.mp3",
-      id: "2",
-    },
-    {
-      title: "Faded",
-      artist: "Alan Walker",
-      artwork: "https://samplesongs.netlify.app/album-arts/faded.jpg",
-      url: "https://samplesongs.netlify.app/Faded.mp3",
-      id: "3",
-    },
-    {
-      title: "Hate Me",
-      artist: "Ellie Goulding",
-      artwork: "https://samplesongs.netlify.app/album-arts/hate-me.jpg",
-      url: "https://samplesongs.netlify.app/Hate%20Me.mp3",
-      id: "4",
-    },
-    {
-      title: "Solo",
-      artist: "Clean Bandit",
-      artwork: "https://samplesongs.netlify.app/album-arts/solo.jpg",
-      url: "https://samplesongs.netlify.app/Solo.mp3",
-      id: "5",
-    },
-    {
-      title: "Without Me",
-      artist: "Halsey",
-      artwork: "https://samplesongs.netlify.app/album-arts/without-me.jpg",
-      url: "https://samplesongs.netlify.app/Without%20Me.mp3",
-      id: "6",
-    },
-  ];
-  const dataRes = [
-    {
-      id: 32,
-      title: "tttddfdfff",
-      url: "uploads/songs/1690268075142.mp3",
-      artwork: "uploads/songs/image/1690268075171.png",
-      description: "test ghdfhdhd",
-      duration: "5:23",
-      amount: 20,
-      is_active: "1",
-    },
-  ];
   const [musicIndex, setMusicIndex] = useState("");
   const [songData, setSongData] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackIndex, setTrackIndex] = useState(0);
   const [currentTrack, setCurrentTrack] = useState(songData[trackIndex]);
-  console.log("musicIndex", musicIndex);
+
   const navigate = useNavigate();
   const location = useLocation();
 
   const [cataGoriData, setCataGoriData] = useState([]);
 
   const musiaChoose = (index, songid) => {
-    console.log("songid", index);
     setIsPlaying(true);
     setMusicIndex(songid);
     setCurrentTrack(songData[index]);
+    console.log("currentTrack", currentTrack);
   };
 
   const getVatagoriy_details = async () => {
@@ -91,9 +35,13 @@ const CategoryDetails = () => {
         header
       );
       localStorage.setItem("_cataGorid", response.data.data.category_id);
-      console.log("response", response);
+      console.log("response", response.data.data.music);
       setCataGoriData(response.data.data);
       setCurrentTrack(response.data.data.music[trackIndex]);
+      console.log(
+        "response.data.data.music[trackIndex]",
+        response.data.data.music[trackIndex]
+      );
       setSongData(response.data.data.music);
     } catch (error) {}
   };
@@ -108,6 +56,8 @@ const CategoryDetails = () => {
       localStorage.setItem("__musicData", JSON.stringify(songObj));
     } catch (error) {}
   };
+
+  console.log("cataGoriData.image", cataGoriData.image);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -125,7 +75,9 @@ const CategoryDetails = () => {
               <div class="album_single_img">
                 <img
                   src={
-                    cataGoriData.image === "" ? NOIMG : IMG + cataGoriData.image
+                    cataGoriData.image === undefined
+                      ? NOIMG
+                      : IMG + cataGoriData.image
                   }
                   alt=""
                   class="img-fluid"
@@ -149,7 +101,7 @@ const CategoryDetails = () => {
                   <li>ID</li>
                   <li>Song Title</li>
                   <li>Amount</li>
-                  <li>GENRES & MOODS</li>
+                  {/* <li>GENRES & MOODS</li> */}
                   <li>Action</li>
                 </ul>
                 {songData.length === 0 ? (
@@ -163,12 +115,18 @@ const CategoryDetails = () => {
                         }
                         onClick={() => musiaChoose(index, item.id)}
                       >
-                        <Link
-                          to="javascript:void(0)"
-                          // onClick={() => singMusicPlay(index)}
-                        >
-                          <span class="play_no">{index + 1}</span>
-                          <span class="play_hover"></span>
+                        <Link to="javascript:void(0)">
+                          <span class="play_no">
+                            {musicIndex === item.id ? "" : index + 1}
+                          </span>
+                          {musicIndex === item.id ? (
+                            <img
+                              className="playIcon"
+                              src="https://m.media-amazon.com/images/G/01/digital/music/player/web/EQ_accent.gif"
+                            />
+                          ) : (
+                            <span class="play_hover"></span>
+                          )}
                         </Link>
                       </li>
                       <li
@@ -189,7 +147,7 @@ const CategoryDetails = () => {
                           $ {item.amount} : 00
                         </Link>
                       </li>
-                      <li
+                      {/* <li
                         className={
                           musicIndex === item.id ? "songActive" : "calll"
                         }
@@ -198,7 +156,7 @@ const CategoryDetails = () => {
                         <Link to="javascript:void(0)">
                           Rap / Hip-Hop, Anniversary, heartfe
                         </Link>
-                      </li>
+                      </li> */}
                       <li>
                         <Link
                           onClick={() =>
@@ -243,6 +201,7 @@ const CategoryDetails = () => {
         ""
       ) : (
         <AudioTrack
+          setMusicIndex={setMusicIndex}
           cataName={cataGoriData.category_name}
           tracks={songData}
           setTrackIndex={setTrackIndex}

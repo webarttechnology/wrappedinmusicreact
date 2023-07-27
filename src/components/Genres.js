@@ -12,9 +12,9 @@ const Genres = ({ tableData, cataNameSlg }) => {
         <div class="row">
           <div class="col-lg-12">
             <div class="ms_heading">
-              <h1>Top {cataNameSlg}</h1>
+              <h1>List of Playlists </h1>
               <span class="veiw_all">
-                <a href="#">view more</a>
+                <a href="#">{tableData.length} results</a>
               </span>
             </div>
           </div>

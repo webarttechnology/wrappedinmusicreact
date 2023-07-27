@@ -41,19 +41,22 @@ const Category = ({ setIsLogin }) => {
 
   const categoriy_details = async (catid, cataName) => {
     const header = localStorage.getItem("_tokenCode");
-
     setIsActive(true);
     setCategoriData(catid);
     setCataNameSlg(cataName);
     dataArry.includes(catid) == false
       ? dataArry.push(catid)
-      : delete dataArry[dataArry.indexOf(catid)];
-    console.log("dataArry", dataArry);
+      : dataArry.splice(dataArry.indexOf(catid), 1);
+
     try {
       const reQobj = {
         category_id: dataArry.toString(),
       };
       console.log("reQobj", reQobj);
+      if (reQobj.category_id === "") {
+        setIsActive(false);
+        getAll_subcatagori();
+      }
       const response = await API.subCategoryId(reQobj, header);
       console.log("responseddd", response);
       setTableData(response.data.data);
@@ -127,7 +130,7 @@ const Category = ({ setIsLogin }) => {
           <Genres cataNameSlg={cataNameSlg} tableData={tableData} />
         )}
 
-        <SongCarousal cateTitle="Popular Occasions" />
+        {/* <SongCarousal cateTitle="Popular Occasions" /> */}
       </div>
     </>
   );

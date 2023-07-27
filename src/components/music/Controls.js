@@ -12,9 +12,11 @@ const Controls = ({
   trackIndex,
   setTrackIndex,
   setCurrentTrack,
+  currentTrack,
   handleNext,
   isPlaying,
   setIsPlaying,
+  setMusicIndex,
 }) => {
   // const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(60);
@@ -22,6 +24,7 @@ const Controls = ({
   const [isDragging, setIsDragging] = useState("");
 
   const togglePlayPause = () => {
+    setMusicIndex(currentTrack.id);
     setIsPlaying((prev) => !prev);
   };
 
@@ -57,6 +60,8 @@ const Controls = ({
   };
 
   const handlePrevious = () => {
+    console.log("currentTrack", currentTrack);
+    setMusicIndex(currentTrack.id);
     if (trackIndex === 0) {
       let lastTrackIndex = tracks.length - 1;
       setTrackIndex(lastTrackIndex);
