@@ -136,14 +136,11 @@ const AppRouter = () => {
                   <Route path="/wrapin-music" element={<WrapInMusic />} />
                   <Route path="/testimonials" element={<Testimonialss />} />
                   <Route path="/contact-us" element={<Contact />} />
-                  {/* <Route
-                    path="/category-details"
-                    element={<CategoryDetails setMusicIndex={setMusicIndex} />}
-                  />{" "} */}
+
                   <Route
                     path="/category-details"
                     element={<CategoryDetails setMusicIndex={setMusicIndex} />}
-                  />{" "}
+                  />
                   <Route
                     path="/message-placement"
                     element={<MessagePlacePage />}
@@ -164,6 +161,36 @@ const AppRouter = () => {
               <>
                 <Routes>
                   <Route path="/" element={<Base />} />
+                  <Route
+                    path="/songs"
+                    element={<Song setIsLogin={setIsLogin} />}
+                  />
+                  <Route
+                    path="/category"
+                    element={<Category setIsLogin={setIsLogin} />}
+                  />
+                  <Route path="/wrapin-music" element={<WrapInMusic />} />
+                  <Route path="/testimonials" element={<Testimonialss />} />
+                  <Route path="/contact-us" element={<Contact />} />
+
+                  <Route
+                    path="/category-details"
+                    element={<CategoryDetails setMusicIndex={setMusicIndex} />}
+                  />
+                  <Route
+                    path="/message-placement"
+                    element={<MessagePlacePage />}
+                  />
+                  <Route path="/order-details" element={<MusicDetails />} />
+                  <Route path="/voice-message" element={<VoiceMess />} />
+                  <Route
+                    path="/thankyou"
+                    element={<ThankYou setIsLogin={setIsLogin} />}
+                  />
+                  <Route
+                    path="/my-account"
+                    element={<MyAccount setIsLogin={setIsLogin} />}
+                  />
                   <Route
                     path="/signup"
                     element={<SignUp setIsLogin={setIsLogin} />}
