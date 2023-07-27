@@ -15,16 +15,15 @@ const CategoryDetails = () => {
   const [trackIndex, setTrackIndex] = useState(0);
   const [currentTrack, setCurrentTrack] = useState(songData[trackIndex]);
 
-  const navigate = useNavigate();
-  const location = useLocation();
-
   const [cataGoriData, setCataGoriData] = useState([]);
 
   const musiaChoose = (index, songid) => {
+    console.log("index", index);
+    console.log("songid", songid);
     setIsPlaying(true);
     setMusicIndex(songid);
     setCurrentTrack(songData[index]);
-    console.log("currentTrack", currentTrack);
+    setTrackIndex(index)
   };
 
   const getVatagoriy_details = async () => {
@@ -201,6 +200,8 @@ const CategoryDetails = () => {
         ""
       ) : (
         <AudioTrack
+          musiaChoose={musiaChoose}
+          musicIndex={musicIndex}
           setMusicIndex={setMusicIndex}
           cataName={cataGoriData.category_name}
           tracks={songData}
