@@ -34,7 +34,7 @@ const Sidebar = ({ isOpen, sidebarOpen, isLogin }) => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/songs" title="About Us">
+                <NavLink to="/songs/category" title="About Us">
                   <span class="nav_icon">
                     <i class="bi bi-music-note"></i>
                   </span>

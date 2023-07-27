@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import * as API from "../api/index";
 import { IMG, NOIMG } from "../api/constant";
 import Bestsellers from "../components/Bestsellers";
+
+import cataImg from "../assets/images/artist/artist2.jpg";
 const Song = ({ setIsLogin }) => {
   const [catagoriMain, setCatagoriMain] = useState([]);
   const [seachData, setSeachData] = useState([]);
@@ -74,14 +76,10 @@ const Song = ({ setIsLogin }) => {
             <div class="row justify-content-center">
               {catagoriMain.map((item, index) => (
                 <div class="col-lg-3 col-md-6 mx-7" key={index}>
-                  <Link to="/category">
+                  <Link to="/songs/sub-category">
                     <div class="ms_rcnt_box marger_bottom30">
                       <div class="ms_rcnt_box_img bxyimg">
-                        <img
-                          src="assets/images/artist/artist2.jpg"
-                          alt=""
-                          class="img-fluid"
-                        />
+                        <img src={cataImg} alt="" class="img-fluid" />
                         <div class="ms_main_overlay">
                           <div class="ms_box_overlay"></div>
                         </div>

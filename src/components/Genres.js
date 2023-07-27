@@ -22,7 +22,7 @@ const Genres = ({ tableData, cataNameSlg }) => {
             <div class="col-lg-4" key={index}>
               <Link
                 onClick={() => subCataId(item.id)}
-                to="/category-details"
+                to="/song-list"
                 state={{ id: item.id }}
               >
                 <div class="ms_genres_box">
@@ -33,9 +33,9 @@ const Genres = ({ tableData, cataNameSlg }) => {
                   />
                   <div class="ms_main_overlay">
                     <div class="ms_box_overlay"></div>
-                    <div class="ms_play_icon">
-                      <img src="assets/images/svg/play.svg" alt="" />
-                    </div>
+                    {/* <div class="ms_play_icon">
+                      <i class="bi bi-eye"></i>
+                    </div> */}
                     <div class="ovrly_text_div">
                       <span class="ovrly_text1">
                         <a href="#">{item.name}</a>

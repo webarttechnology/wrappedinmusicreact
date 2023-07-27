@@ -126,11 +126,11 @@ const AppRouter = () => {
                 <Routes>
                   <Route path="/" element={<Base />} />
                   <Route
-                    path="/songs"
+                    path="/songs/category"
                     element={<Song setIsLogin={setIsLogin} />}
                   />
                   <Route
-                    path="/category"
+                    path="/songs/sub-category"
                     element={<Category setIsLogin={setIsLogin} />}
                   />
                   <Route path="/wrapin-music" element={<WrapInMusic />} />
@@ -138,7 +138,7 @@ const AppRouter = () => {
                   <Route path="/contact-us" element={<Contact />} />
 
                   <Route
-                    path="/category-details"
+                    path="/song-list"
                     element={<CategoryDetails setMusicIndex={setMusicIndex} />}
                   />
                   <Route
@@ -162,11 +162,11 @@ const AppRouter = () => {
                 <Routes>
                   <Route path="/" element={<Base />} />
                   <Route
-                    path="/songs"
+                    path="/songs/category"
                     element={<Song setIsLogin={setIsLogin} />}
                   />
                   <Route
-                    path="/category"
+                    path="/songs/sub-category"
                     element={<Category setIsLogin={setIsLogin} />}
                   />
                   <Route path="/wrapin-music" element={<WrapInMusic />} />
@@ -174,7 +174,7 @@ const AppRouter = () => {
                   <Route path="/contact-us" element={<Contact />} />
 
                   <Route
-                    path="/category-details"
+                    path="/song-list"
                     element={<CategoryDetails setMusicIndex={setMusicIndex} />}
                   />
                   <Route
