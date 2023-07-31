@@ -6,15 +6,21 @@ import * as API from "../api/index";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import ScriptRecord from "./ScriptRecord";
+import { MESSAGE } from "../schemas/Validation";
 const VoiceMess = () => {
   const [script, setScript] = useState([]);
-  const [scriptId, setScriptId] = useState([]);
+  const [scriptId, setScriptId] = useState("");
   const [sortDec, setSortDec] = useState("");
   const [voiceMessage, setVoiceMessage] = useState("");
   const [extraAmount, setExtraAmount] = useState("");
   const [scriptvalue, setScriptvalue] = useState("");
-
+  console.log("scriptId", scriptId);
   const voiceData = () => {
+    if (scriptId === "") {
+      MESSAGE("Please choose script");
+    } else if (voiceMessage === "") {
+      MESSAGE("Please record your voice");
+    }
     const voiceObj = {
       recordMess: voiceMessage,
       add_amount: extraAmount,
@@ -24,10 +30,27 @@ const VoiceMess = () => {
     localStorage.setItem("_voiceData", JSON.stringify(voiceObj));
   };
 
-  const scriptHandaler = (e) => {
+  const voiceData1 = () => {
+    if (voiceMessage === "") {
+      MESSAGE("Please record your voice");
+    }
+    const voiceObj = {
+      recordMess: voiceMessage,
+      add_amount: extraAmount,
+      chooseTab: scriptvalue === "" ? "1" : scriptvalue,
+      scriptId: scriptId,
+    };
+    localStorage.setItem("_voiceData", JSON.stringify(voiceObj));
+  };
+
+  const scriptHandaler = async (e) => {
+    const header = localStorage.getItem("_tokenCode");
     setScriptId(e.target.value);
+    try {
+      const response = await API.scriptGuide_byId(e.target.value, header);
+      setSortDec(response.data.data.description);
+    } catch (error) {}
     console.log("e.target.value", e.target.dataDec);
-    guideneScrit();
   };
 
   const guideneScrit = async () => {
@@ -39,19 +62,12 @@ const VoiceMess = () => {
       );
       setScript(response.data.data);
       console.log("response.data.data", response.data.data);
-
-      response.data.data.map((item, index) => {
-        let found = Object.values(item.id).includes(scriptId);
-        console.log("found", found);
-        if (found) {
-          // code
-        }
-      });
     } catch (error) {}
   };
 
   const location = useLocation();
   const recorderControls = useAudioRecorder();
+
   const addAudioElement = (blob) => {
     const url = URL.createObjectURL(blob);
     const audio = document.createElement("audio");
@@ -64,7 +80,9 @@ const VoiceMess = () => {
       //console.log(base64data);
       setVoiceMessage(base64data);
     };
+
     const audioTag = document.querySelector("#recordAudio");
+
     audioTag.appendChild(audio);
   };
 
@@ -150,13 +168,22 @@ const VoiceMess = () => {
                           Enhance my audio (Additional $5 Apply)
                         </label>
                       </div>
-                      <Link
-                        onClick={voiceData}
-                        to="/message-placement"
-                        className="ms_btn margin_top"
-                      >
-                        Confirm Audio
-                      </Link>
+                      {voiceMessage === "" ? (
+                        <Link
+                          onClick={voiceData1}
+                          className="ms_btn margin_top"
+                        >
+                          Confirm Audio
+                        </Link>
+                      ) : (
+                        <Link
+                          onClick={voiceData1}
+                          to="/message-placement"
+                          className="ms_btn margin_top"
+                        >
+                          Confirm Audio
+                        </Link>
+                      )}
                     </div>
                     <div
                       class="tab-pane fade"
@@ -186,13 +213,19 @@ const VoiceMess = () => {
                       )}
                       <div id="recordAudioS"></div>
                       <ScriptRecord setVoiceMessage={setVoiceMessage} />
-                      <Link
-                        onClick={voiceData}
-                        to="/message-placement"
-                        className="ms_btn margin_top"
-                      >
-                        Confirm Audio
-                      </Link>
+                      {scriptId === "" ? (
+                        <Link onClick={voiceData} className="ms_btn margin_top">
+                          Confirm Audio
+                        </Link>
+                      ) : (
+                        <Link
+                          to="/message-placement"
+                          onClick={voiceData}
+                          className="ms_btn margin_top"
+                        >
+                          Confirm Audio
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>

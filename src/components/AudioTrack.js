@@ -36,28 +36,18 @@ const AudioTrack = ({
     if (trackIndex >= tracks.length - 1) {
       setTrackIndex(0);
       setCurrentTrack(tracks[0]);
+      musiaChoose(0, tracks[0].id);
     } else {
       setTrackIndex((prev) => prev + 1);
-      console.log(trackIndex);
-
       setCurrentTrack(tracks[trackIndex + 1]);
+      musiaChoose(trackIndex + 1, tracks[trackIndex + 1].id);
     }
-
-    musiaChoose(trackIndex, musicIndex);
   };
 
   // console.log("currentTrack", currentTrack);
   // console.log(trackIndex);
   return (
     <>
-      {/* <CataDetails
-        setIsPlaying={setIsPlaying}
-        setCurrentTrack={setCurrentTrack}
-      /> */}
-      {/* <CategoryDetails
-        setIsPlaying={setIsPlaying}
-        setCurrentTrack={setCurrentTrack}
-      /> */}
       <div class="ms_player_wrapper">
         <div class="ms_player_close">
           <i class="fa fa-angle-up" aria-hidden="true"></i>
@@ -143,6 +133,7 @@ const AudioTrack = ({
                           setCurrentTrack,
                           handleNext,
                           setMusicIndex,
+                          musiaChoose,
                         }}
                       />
                     </div>

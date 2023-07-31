@@ -17,6 +17,7 @@ const Controls = ({
   isPlaying,
   setIsPlaying,
   setMusicIndex,
+  musiaChoose,
 }) => {
   // const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(60);
@@ -60,15 +61,15 @@ const Controls = ({
   };
 
   const handlePrevious = () => {
-    console.log("currentTrack", currentTrack);
-    setMusicIndex(currentTrack.id);
     if (trackIndex === 0) {
       let lastTrackIndex = tracks.length - 1;
       setTrackIndex(lastTrackIndex);
       setCurrentTrack(tracks[lastTrackIndex]);
+      musiaChoose(lastTrackIndex, tracks[lastTrackIndex].id);
     } else {
       setTrackIndex((prev) => prev - 1);
       setCurrentTrack(tracks[trackIndex - 1]);
+      musiaChoose(trackIndex - 1, tracks[trackIndex - 1].id);
     }
   };
 

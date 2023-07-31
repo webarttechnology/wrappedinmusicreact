@@ -1,19 +1,28 @@
 import React, { useState } from "react";
 import InnerBanner from "../components/InnerBanner";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { MESSAGE } from "../schemas/Validation";
 
 const MessagePlacePage = () => {
+  const navigate = useNavigate();
   const [miniut, setMiniut] = useState("");
   const [secound, setSecound] = useState("");
   const [position, setPosition] = useState("");
   const inputHandaler = () => {
+    if (!miniut || !secound || !position) {
+      MESSAGE("Please choose data");
+    }
     const reqObj = {
       duration: miniut + ":" + secound,
       add_position: position,
     };
     console.log("reeqObj", reqObj);
+
     localStorage.setItem("_messagePalace", JSON.stringify(reqObj));
   };
+  const desabel = !miniut || !secound || !position;
+  console.log("desabel", desabel);
+  console.log(miniut);
   return (
     <>
       <InnerBanner />
@@ -62,13 +71,26 @@ const MessagePlacePage = () => {
               </div>
 
               <div class="pro-form-btn text-center marger_top15">
-                <Link
+                {desabel ? (
+                  <Link onClick={inputHandaler} class="ms_btn">
+                    Submit
+                  </Link>
+                ) : (
+                  <Link
+                    onClick={inputHandaler}
+                    to="/order-details"
+                    class="ms_btn"
+                  >
+                    Submit
+                  </Link>
+                )}
+                {/* <Link
                   onClick={inputHandaler}
                   to="/order-details"
                   class="ms_btn"
                 >
                   Submit
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>

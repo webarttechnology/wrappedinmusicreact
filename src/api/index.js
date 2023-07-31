@@ -110,7 +110,17 @@ export const subCategoryIdDetails = async (data, header) => {
 export const scriptGuide = async (header, data) => {
   try {
     const url = c.SCRIPT + "/" + data;
-    console.log("_cataGorid", url);
+    const res = await axios.get(url, {
+      headers: JSON.parse(header),
+    });
+    return res;
+  } catch (e) {
+    return e.response;
+  }
+};
+export const scriptGuide_byId = async (data, header) => {
+  try {
+    const url = c.SCRIPT + "/id/" + data;
     const res = await axios.get(url, {
       headers: JSON.parse(header),
     });

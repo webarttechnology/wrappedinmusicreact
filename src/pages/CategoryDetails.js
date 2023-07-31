@@ -18,12 +18,10 @@ const CategoryDetails = () => {
   const [cataGoriData, setCataGoriData] = useState([]);
 
   const musiaChoose = (index, songid) => {
-    console.log("index", index);
-    console.log("songid", songid);
     setIsPlaying(true);
     setMusicIndex(songid);
     setCurrentTrack(songData[index]);
-    setTrackIndex(index)
+    setTrackIndex(index);
   };
 
   const getVatagoriy_details = async () => {
@@ -45,18 +43,19 @@ const CategoryDetails = () => {
     } catch (error) {}
   };
 
-  const add_music_user = (songId, songAmount, title) => {
+  const add_music_user = (songId, songAmount, title, decription, image) => {
     try {
       const songObj = {
         song_id: songId,
-        song_amount: 50,
+        song_amount: songAmount,
         title: title,
+        decription: decription,
+        image: image,
       };
+      console.log("songObj", songObj);
       localStorage.setItem("__musicData", JSON.stringify(songObj));
     } catch (error) {}
   };
-
-  console.log("cataGoriData.image", cataGoriData.image);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -159,7 +158,13 @@ const CategoryDetails = () => {
                       <li>
                         <Link
                           onClick={() =>
-                            add_music_user(item.id, item.amount, item.title)
+                            add_music_user(
+                              item.id,
+                              item.amount,
+                              item.title,
+                              item.description,
+                              item.artwork
+                            )
                           }
                           to="/voice-message"
                           class="cart_btn"
@@ -167,20 +172,6 @@ const CategoryDetails = () => {
                         >
                           <i class="fa fa-plus" aria-hidden="true"></i>
                         </Link>
-                        {/* {item.Orders.length === 0 ? (
-                          <Link
-                            onClick={() => add_music_user(item.id)}
-                            //to="/voice-message"
-                            class="cart_btn"
-                            state={{ songId: item.id }}
-                          >
-                            <i class="fa fa-plus" aria-hidden="true"></i>
-                          </Link>
-                        ) : (
-                          <Link class="cart_btn" state={{ songId: item.id }}>
-                            <i class="fa fa-check" aria-hidden="true"></i>
-                          </Link>
-                        )} */}
                       </li>
                     </ul>
                   ))

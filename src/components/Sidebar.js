@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-
+import logo from "../assets/images/wlogo.jpg";
 const Sidebar = ({ isOpen, sidebarOpen, isLogin }) => {
   return (
     <>
@@ -14,12 +14,12 @@ const Sidebar = ({ isOpen, sidebarOpen, isLogin }) => {
           <div class="ms_logo_inner">
             <div class="ms_logo">
               <Link to="/">
-                <img src="assets/images/logo-m.png" alt="" class="img-fluid" />
+                <img src={logo} alt="" class="img-fluid" />
               </Link>
             </div>
             <div class="ms_logo_open">
               <Link to="/">
-                <img src="assets/images/logo-m.png" alt="" class="img-fluid" />
+                <img src={logo} alt="" class="img-fluid" />
               </Link>
             </div>
           </div>
