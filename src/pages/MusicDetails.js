@@ -3,6 +3,7 @@ import InnerBanner from "../components/InnerBanner";
 import { Link, useNavigate } from "react-router-dom";
 import { IMG } from "../api/constant";
 import * as API from "../api/index";
+import { MESSAGE } from "../schemas/Validation";
 const MusicDetails = () => {
   const navigate = useNavigate();
   const messgeData = JSON.parse(localStorage.getItem("_messagePalace"));
@@ -30,7 +31,7 @@ const MusicDetails = () => {
       const response = await API.add_order(reqObj, header);
       console.log("response0", response);
       if (response.data.success === 1) {
-        // payment(response.data.data.url);
+        MESSAGE("");
         window.open(response.data.data.url, "_self");
         // navigate(response.data.data.url);
       }

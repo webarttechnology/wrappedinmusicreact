@@ -22,6 +22,7 @@ import ThankYou from "../pages/ThankYou";
 
 import * as API from "../api/index";
 import CataDetails from "../pages/CataDetails";
+import Payment from "../pages/Payment";
 const AppRouter = () => {
   const tracks = [
     {
@@ -148,6 +149,10 @@ const AppRouter = () => {
                   <Route
                     path="/my-account"
                     element={<MyAccount setIsLogin={setIsLogin} />}
+                  />
+                  <Route
+                    path="/payment"
+                    element={<Payment setIsLogin={setIsLogin} />}
                   />
                 </Routes>
               </>
