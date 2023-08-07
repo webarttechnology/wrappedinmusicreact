@@ -88,10 +88,35 @@ const Category = ({ setIsLogin }) => {
   }, []);
   return (
     <>
-      <InnerBanner />
+      {/* <InnerBanner /> */}
       <div class="ms_genres_wrapper">
         <div class="row justify-content-center">
+          <div className="col-md-12">
+            <h2 className="text-center songHead">Songs Selection</h2>
+          </div>
           <div class="col-md-7">
+            <div class="cat action">
+              <label onClick={activeButton} class={isActive ? "" : "active"}>
+                <span>All</span>
+              </label>
+              {catagoriMain.map((item, index) => (
+                <>
+                  <label key={index}>
+                    <input
+                      onChange={() => categoriy_details(item.id, item.name)}
+                      type="checkbox"
+                      id={item.id}
+                      value={item.id}
+                    />
+                    <span>{item.name}</span>
+                  </label>
+                </>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div className="col-md-4">
             <div class="srhbyx">
               <input
                 type="text"
@@ -102,26 +127,6 @@ const Category = ({ setIsLogin }) => {
                 <i class="fa fa-search" aria-hidden="true"></i>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="cat action">
-            <label onClick={activeButton} class={isActive ? "" : "active"}>
-              <span>All</span>
-            </label>
-            {catagoriMain.map((item, index) => (
-              <>
-                <label key={index}>
-                  <input
-                    onChange={() => categoriy_details(item.id, item.name)}
-                    type="checkbox"
-                    id={item.id}
-                    value={item.id}
-                  />
-                  <span>{item.name}</span>
-                </label>
-              </>
-            ))}
           </div>
         </div>
         {tableData === "" || tableData === undefined ? (

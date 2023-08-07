@@ -64,7 +64,7 @@ const CategoryDetails = () => {
 
   return (
     <>
-      <InnerBanner />
+      {/* <InnerBanner /> */}
       {/* <CataDetails /> */}
       <div class="ms_genres_wrapper">
         <div className="row justify-content-center">

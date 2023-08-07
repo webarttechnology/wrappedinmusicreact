@@ -92,7 +92,7 @@ const VoiceMess = () => {
 
   return (
     <>
-      <InnerBanner />
+      {/* <InnerBanner /> */}
       <div className="voiceRecordSection">
         <div className="container">
           <div className="row justify-content-center">

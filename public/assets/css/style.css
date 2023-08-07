@@ -836,6 +836,9 @@ ul.ms_lang_box:after {
 .ms-banner {
   padding: 0px 0px 40px;
 }
+.ms-banner {
+  margin-top: 4em;
+}
 .ms_banner_img {
   text-align: center;
   max-width: 511px;
@@ -1562,7 +1565,7 @@ ul.more_option li a:hover .opt_icon .icon_share {
 }
 /*====Top Genres Css Start====*/
 .ms_genres_wrapper {
-  margin: 50px 0px 0px 0px;
+  margin: 100rem 0px 0px 0px;
 }
 
 .ms_genres_box {
@@ -1574,7 +1577,7 @@ ul.more_option li a:hover .opt_icon .icon_share {
 }
 .ms_genres_box img {
   width: 100%;
-  height: 350px;
+  height: 150px;
   object-fit: cover;
 }
 .ms_genres_box:hover .ms_box_overlay {
@@ -7259,7 +7262,6 @@ ul.accordion p {
 
 .srhbyx {
   position: relative;
-  margin-bottom: 40px;
 }
 
 .srhbyx .form-control {
@@ -8060,6 +8062,7 @@ input[type="range"]:active::-moz-range-thumb {
 
 .voiceRecordSection {
   padding: 50px;
+  margin-top: 50rem;
 }
 /* audio {
   position: absolute;
@@ -8423,4 +8426,9 @@ input[type="range"]:active::-moz-range-thumb {
 }
 .musicheading {
   text-transform: capitalize;
+}
+.songHead {
+  font-size: 30px;
+  text-transform: capitalize;
+  margin-bottom: 50px;
 }

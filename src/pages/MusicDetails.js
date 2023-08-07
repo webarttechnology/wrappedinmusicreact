@@ -47,7 +47,7 @@ const MusicDetails = () => {
 
   return (
     <>
-      <InnerBanner />
+      {/* <InnerBanner /> */}
       <div className="row justify-content-center">
         <div className="col-md-8">
           <div class="ms_profile_box messPlacement">

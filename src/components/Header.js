@@ -5,7 +5,10 @@ const Header = ({ isOpen }) => {
     <>
       <div class={isOpen ? "ms_headerPost ms_header" : "ms_header"}>
         <div class="ms_top_left">
-          <div class="ms_top_trend">
+          <div class="imgbanner text-center">
+            <h1>WRAPPED IN MUSIC</h1>
+          </div>
+          <div class="ms_top_trend d-none">
             <span>
               <a href="#" class="ms_color">
                 LOGO

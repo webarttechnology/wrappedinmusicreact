@@ -54,7 +54,7 @@ const Song = ({ setIsLogin }) => {
   }, []);
   return (
     <>
-      <InnerBanner />
+      {/* <InnerBanner /> */}
       <div class="ms_top_artist">
         <div class="container-fluid">
           <div class="row justify-content-center">

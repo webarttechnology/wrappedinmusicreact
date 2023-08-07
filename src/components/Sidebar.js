@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../assets/images/wlogo.jpg";
+import logo from "../assets/images/wlogo.png";
 const Sidebar = ({ isOpen, sidebarOpen, isLogin }) => {
   return (
     <>
@@ -14,7 +14,7 @@ const Sidebar = ({ isOpen, sidebarOpen, isLogin }) => {
           <div class="ms_logo_inner">
             <div class="ms_logo">
               <Link to="/">
-                <img src={logo} alt="" class="img-fluid" />
+                <img src={logo} alt="" class="img-fluid w-75" />
               </Link>
             </div>
             <div class="ms_logo_open">
@@ -34,7 +34,7 @@ const Sidebar = ({ isOpen, sidebarOpen, isLogin }) => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/songs/category" title="About Us">
+                <NavLink to="/songs/sub-category" title="About Us">
                   <span class="nav_icon">
                     <i class="bi bi-music-note"></i>
                   </span>

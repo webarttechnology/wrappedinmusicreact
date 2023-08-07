@@ -12,14 +12,14 @@ const Genres = ({ tableData, cataNameSlg }) => {
         <div class="row">
           <div class="col-lg-12">
             <div class="ms_heading">
-              <h1>List of Playlists </h1>
+              <h1>Type of Songs</h1>
               <span class="veiw_all">
                 <a href="#">{tableData.length} results</a>
               </span>
             </div>
           </div>
           {tableData.map((item, index) => (
-            <div class="col-lg-4" key={index}>
+            <div class="col-lg-2" key={index}>
               <Link
                 onClick={() => subCataId(item.id)}
                 to="/song-list"
@@ -40,21 +40,15 @@ const Genres = ({ tableData, cataNameSlg }) => {
                       <span class="ovrly_text1">
                         <a href="#">{item.name}</a>
                       </span>
-                      <span class="ovrly_text2">
-                        <a href="#">view song</a>
-                      </span>
                     </div>
                   </div>
-                  <div class="ms_box_overlay_on">
+                  {/* <div class="ms_box_overlay_on">
                     <div class="ovrly_text_div">
                       <span class="ovrly_text1">
                         <a href="#">{item.name}</a>
                       </span>
-                      <span class="ovrly_text2">
-                        <a href="#">view song</a>
-                      </span>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </Link>
             </div>
