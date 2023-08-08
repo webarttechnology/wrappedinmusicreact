@@ -2,7 +2,7 @@ import React from "react";
 import { AudioRecorder, useAudioRecorder } from "react-audio-voice-recorder";
 import { Link } from "react-router-dom";
 
-const ScriptRecord = ({
+const EndVoiceRecorde = ({
   setVoiceMessage,
   voiceMessage,
   voiceData1,
@@ -21,7 +21,7 @@ const ScriptRecord = ({
       setVoiceMessage(base64data);
       //console.log(base64data);
     };
-    const audioTag = document.querySelector("#recordAudio2");
+    const audioTag = document.querySelector("#recordAudio3");
     audioTag.appendChild(audio);
   };
   return (
@@ -65,4 +65,4 @@ const ScriptRecord = ({
   );
 };
 
-export default ScriptRecord;
+export default EndVoiceRecorde;

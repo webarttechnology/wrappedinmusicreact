@@ -6,19 +6,20 @@ import * as API from "../api/index";
 import { useNavigate } from "react-router";
 const Category = ({ setIsLogin }) => {
   const navigate = useNavigate();
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState("0");
   const [catagoriMain, setCatagoriMain] = useState([]);
   const [categoriData, setCategoriData] = useState("");
   const [tableData, setTableData] = useState([]);
   const [cataNameSlg, setCataNameSlg] = useState("");
 
   const [dataArry, setDataArry] = useState([]);
-
-  const activeButton = () => {
-    setIsActive(false);
-    setCataNameSlg("All");
+  console.log("isActive", isActive);
+  const activeButton = (data) => {
+    if (data === "0") {
+      setIsActive(data);
+      getAll_subcatagori();
+    }
     setCategoriData("");
-    getAll_subcatagori();
   };
 
   const getAll_subcatagori = async () => {
@@ -41,7 +42,14 @@ const Category = ({ setIsLogin }) => {
 
   const categoriy_details = async (catid, cataName) => {
     const header = localStorage.getItem("_tokenCode");
-    setIsActive(true);
+    if (catid === "1") {
+      setIsActive(catid);
+    } else if (catid === "2") {
+      setIsActive(catid);
+    } else if (catid === "3") {
+      setIsActive(catid);
+    }
+
     setCategoriData(catid);
     setCataNameSlg(cataName);
     dataArry.includes(catid) == false
@@ -50,7 +58,7 @@ const Category = ({ setIsLogin }) => {
 
     try {
       const reQobj = {
-        category_id: dataArry.toString(),
+        category_id: catid,
       };
       console.log("reQobj", reQobj);
       if (reQobj.category_id === "") {
@@ -96,10 +104,31 @@ const Category = ({ setIsLogin }) => {
           </div>
           <div class="col-md-7">
             <div class="cat action">
-              <label onClick={activeButton} class={isActive ? "" : "active"}>
+              <label
+                onClick={() => activeButton("0")}
+                class={isActive === "0" ? "active" : ""}
+              >
                 <span>All</span>
               </label>
-              {catagoriMain.map((item, index) => (
+              <label
+                onClick={() => categoriy_details("1")}
+                class={isActive === "1" ? "active" : ""}
+              >
+                <span>Genre</span>
+              </label>
+              <label
+                onClick={() => categoriy_details("2")}
+                class={isActive === "2" ? "active" : ""}
+              >
+                <span>Occasion</span>
+              </label>
+              <label
+                onClick={() => categoriy_details("3")}
+                class={isActive === "3" ? "active" : ""}
+              >
+                <span>Mood</span>
+              </label>
+              {/* {catagoriMain.map((item, index) => (
                 <>
                   <label key={index}>
                     <input
@@ -111,7 +140,7 @@ const Category = ({ setIsLogin }) => {
                     <span>{item.name}</span>
                   </label>
                 </>
-              ))}
+              ))} */}
             </div>
           </div>
         </div>
@@ -129,6 +158,7 @@ const Category = ({ setIsLogin }) => {
             </div>
           </div>
         </div>
+
         {tableData === "" || tableData === undefined ? (
           ""
         ) : (

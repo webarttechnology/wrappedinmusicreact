@@ -1,17 +1,31 @@
 import React from "react";
-import { AudioRecorder } from "react-audio-voice-recorder";
+import { AudioRecorder, useAudioRecorder } from "react-audio-voice-recorder";
 import { Link } from "react-router-dom";
 
 const VoiceRecord = ({
-  recorderControls,
-  addAudioElement,
-  setExtraAmount,
-  voiceData1,
+  setVoiceMessage,
   voiceMessage,
+  voiceData1,
+  setExtraAmount,
 }) => {
+  const recorderControls = useAudioRecorder();
+  const addAudioElement = (blob) => {
+    const url = URL.createObjectURL(blob);
+    const audio = document.createElement("audio");
+    audio.src = url;
+    audio.controls = true;
+    var reader = new FileReader();
+    reader.readAsDataURL(blob);
+    reader.onloadend = function () {
+      var base64data = reader.result;
+      setVoiceMessage(base64data);
+      //console.log(base64data);
+    };
+    const audioTag = document.querySelector("#recordAudio1");
+    audioTag.appendChild(audio);
+  };
   return (
     <>
-      <div id="recordAudio"></div>
       <AudioRecorder
         recorderControls={recorderControls}
         onRecordingComplete={addAudioElement}
@@ -19,8 +33,8 @@ const VoiceRecord = ({
           noiseSuppression: true,
           echoCancellation: true,
         }}
-        //downloadOnSavePress={false}
-        downloadFileExtension="mp4"
+        downloadOnSavePress={false}
+        downloadFileExtension="mp3"
       />
       <div className="checkBok">
         <input

@@ -8,6 +8,7 @@ import { useState } from "react";
 import ScriptRecord from "./ScriptRecord";
 import { MESSAGE } from "../schemas/Validation";
 import VoiceRecord from "../components/VoiceRecord";
+import EndVoiceRecorde from "../components/EndVoiceRecorde";
 const VoiceMess = () => {
   const [script, setScript] = useState([]);
   const [scriptId, setScriptId] = useState("");
@@ -63,27 +64,6 @@ const VoiceMess = () => {
       setScript(response.data.data);
       console.log("response.data.data", response.data.data);
     } catch (error) {}
-  };
-
-  const location = useLocation();
-  const recorderControls = useAudioRecorder();
-
-  const addAudioElement = (blob) => {
-    const url = URL.createObjectURL(blob);
-    const audio = document.createElement("audio");
-    audio.src = url;
-    audio.controls = true;
-    var reader = new FileReader();
-    reader.readAsDataURL(blob);
-    reader.onloadend = function () {
-      var base64data = reader.result;
-      //console.log(base64data);
-      setVoiceMessage(base64data);
-    };
-
-    const audioTag = document.querySelector("#recordAudio");
-
-    audioTag.appendChild(audio);
   };
 
   useEffect(() => {
@@ -160,7 +140,13 @@ const VoiceMess = () => {
                       role="tabpanel"
                       aria-labelledby="home-tab"
                     >
-                      <VoiceRecord />
+                      <div id="recordAudio1"></div>
+                      <VoiceRecord
+                        voiceData1={voiceData1}
+                        voiceMessage={voiceMessage}
+                        setVoiceMessage={setVoiceMessage}
+                        setExtraAmount={setExtraAmount}
+                      />
                     </div>
                     <div
                       class="tab-pane fade"
@@ -168,42 +154,13 @@ const VoiceMess = () => {
                       role="tabpanel"
                       aria-labelledby="profile-tab"
                     >
-                      <div class="form-group d-none">
-                        <label>Select Script From list</label>
-                        <select class="form-control" onChange={scriptHandaler}>
-                          <option>--- Select ---</option>
-                          {script.map((item, index) => (
-                            <option
-                              key={index}
-                              value={item.id}
-                              dataDec={item.description}
-                            >
-                              {item.name}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                      {sortDec === "" ? null : (
-                        <div className="decription">
-                          <p>{sortDec}</p>
-                        </div>
-                      )}
-                      <div id="recordAudioS"></div>
-                      <VoiceRecord />
-                      {/* <ScriptRecord setVoiceMessage={setVoiceMessage} />
-                      {scriptId === "" ? (
-                        <Link onClick={voiceData} className="ms_btn margin_top">
-                          Confirm Audio
-                        </Link>
-                      ) : (
-                        <Link
-                          to="/message-placement"
-                          onClick={voiceData}
-                          className="ms_btn margin_top"
-                        >
-                          Confirm Audio
-                        </Link>
-                      )} */}
+                      <div id="recordAudio2"></div>
+                      <ScriptRecord
+                        voiceData1={voiceData1}
+                        voiceMessage={voiceMessage}
+                        setVoiceMessage={setVoiceMessage}
+                        setExtraAmount={setExtraAmount}
+                      />
                     </div>
                     <div
                       class="tab-pane fade"
@@ -211,46 +168,13 @@ const VoiceMess = () => {
                       role="tabpanel"
                       aria-labelledby="homend-tab"
                     >
-                      <VoiceRecord />
-                      {/* <div id="recordAudio"></div>
-                      <AudioRecorder
-                        recorderControls={recorderControls}
-                        onRecordingComplete={addAudioElement}
-                        audioTrackConstraints={{
-                          noiseSuppression: true,
-                          echoCancellation: true,
-                        }}
-                        //downloadOnSavePress={false}
-                        downloadFileExtension="mp4"
+                      <div id="recordAudio3"></div>
+                      <EndVoiceRecorde
+                        voiceData1={voiceData1}
+                        voiceMessage={voiceMessage}
+                        setVoiceMessage={setVoiceMessage}
+                        setExtraAmount={setExtraAmount}
                       />
-                      <div className="checkBok">
-                        <input
-                          type="checkbox"
-                          id="fruit4"
-                          name="fruit-4"
-                          value="5"
-                          onChange={(e) => setExtraAmount(e.target.value)}
-                        />
-                        <label for="fruit4" className="textHad">
-                          Enhance my audio (Additional $5 Apply)
-                        </label>
-                      </div>
-                      {voiceMessage === "" ? (
-                        <Link
-                          onClick={voiceData1}
-                          className="ms_btn margin_top"
-                        >
-                          Confirm Audio
-                        </Link>
-                      ) : (
-                        <Link
-                          onClick={voiceData1}
-                          to="/message-placement"
-                          className="ms_btn margin_top"
-                        >
-                          Confirm Audio
-                        </Link>
-                      )} */}
                     </div>
                   </div>
                 </div>
