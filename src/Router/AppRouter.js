@@ -23,6 +23,7 @@ import ThankYou from "../pages/ThankYou";
 import * as API from "../api/index";
 import CataDetails from "../pages/CataDetails";
 import Payment from "../pages/Payment";
+import SongDetails from "../pages/SongDetails";
 const AppRouter = () => {
   const tracks = [
     {
@@ -141,6 +142,7 @@ const AppRouter = () => {
                     element={<MessagePlacePage />}
                   />
                   <Route path="/order-details" element={<MusicDetails />} />
+                  <Route path="/songs-details" element={<SongDetails />} />
                   <Route path="/voice-message" element={<VoiceMess />} />
                   <Route
                     path="/thankyou"

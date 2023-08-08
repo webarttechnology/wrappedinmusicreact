@@ -4839,7 +4839,7 @@ body.loaded.modal-open .ms_player_wrapper {
     display: none;
   }
   span.ovrly_text1 a {
-    font-size: 13px;
+    font-size: 20px;
   }
   .ovrly_text_div {
     padding: 0px 10px;
@@ -8338,7 +8338,9 @@ input[type="range"]:active::-moz-range-thumb {
 .img_sec img {
   width: 40px;
 }
-
+.marging {
+  margin-top: 5em;
+}
 .grp_sec {
   display: flex;
   justify-content: space-between;
@@ -8364,6 +8366,9 @@ input[type="range"]:active::-moz-range-thumb {
 .list_sec ul {
   display: flex;
   flex-wrap: wrap;
+}
+.marginyTpp {
+  margin-top: 7em;
 }
 
 .list_sec ul li {

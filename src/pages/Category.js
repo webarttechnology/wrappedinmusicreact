@@ -116,7 +116,7 @@ const Category = ({ setIsLogin }) => {
           </div>
         </div>
         <div class="row justify-content-center">
-          <div className="col-md-4">
+          <div className="col-md-5">
             <div class="srhbyx">
               <input
                 type="text"

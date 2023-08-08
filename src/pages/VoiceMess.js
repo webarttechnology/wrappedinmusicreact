@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import ScriptRecord from "./ScriptRecord";
 import { MESSAGE } from "../schemas/Validation";
+import VoiceRecord from "../components/VoiceRecord";
 const VoiceMess = () => {
   const [script, setScript] = useState([]);
   const [scriptId, setScriptId] = useState("");
@@ -14,7 +15,7 @@ const VoiceMess = () => {
   const [voiceMessage, setVoiceMessage] = useState("");
   const [extraAmount, setExtraAmount] = useState("");
   const [scriptvalue, setScriptvalue] = useState("");
-  console.log("scriptId", scriptId);
+
   const voiceData = () => {
     if (scriptId === "") {
       MESSAGE("Please choose script");
@@ -50,7 +51,6 @@ const VoiceMess = () => {
       const response = await API.scriptGuide_byId(e.target.value, header);
       setSortDec(response.data.data.description);
     } catch (error) {}
-    console.log("e.target.value", e.target.dataDec);
   };
 
   const guideneScrit = async () => {
@@ -119,7 +119,7 @@ const VoiceMess = () => {
                         aria-selected="true"
                         onClick={() => setScriptvalue("1")}
                       >
-                        I Have My Own Script
+                        Record Starting Message
                       </button>
                     </li>
                     <li class="nav-item" role="presentation">
@@ -134,7 +134,22 @@ const VoiceMess = () => {
                         aria-selected="false"
                         onClick={() => setScriptvalue("2")}
                       >
-                        Choose a Preset Script
+                        Record Middle Story
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link"
+                        id="homend-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#homend"
+                        type="button"
+                        role="tab"
+                        aria-controls="homend"
+                        aria-selected="false"
+                        onClick={() => setScriptvalue("2")}
+                      >
+                        Record Ending Message
                       </button>
                     </li>
                   </ul>
@@ -145,7 +160,59 @@ const VoiceMess = () => {
                       role="tabpanel"
                       aria-labelledby="home-tab"
                     >
-                      <div id="recordAudio"></div>
+                      <VoiceRecord />
+                    </div>
+                    <div
+                      class="tab-pane fade"
+                      id="profile"
+                      role="tabpanel"
+                      aria-labelledby="profile-tab"
+                    >
+                      <div class="form-group d-none">
+                        <label>Select Script From list</label>
+                        <select class="form-control" onChange={scriptHandaler}>
+                          <option>--- Select ---</option>
+                          {script.map((item, index) => (
+                            <option
+                              key={index}
+                              value={item.id}
+                              dataDec={item.description}
+                            >
+                              {item.name}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      {sortDec === "" ? null : (
+                        <div className="decription">
+                          <p>{sortDec}</p>
+                        </div>
+                      )}
+                      <div id="recordAudioS"></div>
+                      <VoiceRecord />
+                      {/* <ScriptRecord setVoiceMessage={setVoiceMessage} />
+                      {scriptId === "" ? (
+                        <Link onClick={voiceData} className="ms_btn margin_top">
+                          Confirm Audio
+                        </Link>
+                      ) : (
+                        <Link
+                          to="/message-placement"
+                          onClick={voiceData}
+                          className="ms_btn margin_top"
+                        >
+                          Confirm Audio
+                        </Link>
+                      )} */}
+                    </div>
+                    <div
+                      class="tab-pane fade"
+                      id="homend"
+                      role="tabpanel"
+                      aria-labelledby="homend-tab"
+                    >
+                      <VoiceRecord />
+                      {/* <div id="recordAudio"></div>
                       <AudioRecorder
                         recorderControls={recorderControls}
                         onRecordingComplete={addAudioElement}
@@ -183,49 +250,7 @@ const VoiceMess = () => {
                         >
                           Confirm Audio
                         </Link>
-                      )}
-                    </div>
-                    <div
-                      class="tab-pane fade"
-                      id="profile"
-                      role="tabpanel"
-                      aria-labelledby="profile-tab"
-                    >
-                      <div class="form-group">
-                        <label>Select Script From list</label>
-                        <select class="form-control" onChange={scriptHandaler}>
-                          <option>--- Select ---</option>
-                          {script.map((item, index) => (
-                            <option
-                              key={index}
-                              value={item.id}
-                              dataDec={item.description}
-                            >
-                              {item.name}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                      {sortDec === "" ? null : (
-                        <div className="decription">
-                          <p>{sortDec}</p>
-                        </div>
-                      )}
-                      <div id="recordAudioS"></div>
-                      <ScriptRecord setVoiceMessage={setVoiceMessage} />
-                      {scriptId === "" ? (
-                        <Link onClick={voiceData} className="ms_btn margin_top">
-                          Confirm Audio
-                        </Link>
-                      ) : (
-                        <Link
-                          to="/message-placement"
-                          onClick={voiceData}
-                          className="ms_btn margin_top"
-                        >
-                          Confirm Audio
-                        </Link>
-                      )}
+                      )} */}
                     </div>
                   </div>
                 </div>
